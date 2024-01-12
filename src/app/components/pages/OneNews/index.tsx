@@ -5,10 +5,10 @@ import { useSetDocumentTitle } from '@/app/hooks/useSetDocumentTitle'
 import { INewsItem } from '@/app/interface/News'
 import { NewsServices } from '@/app/redux/slices/news/NewsServicesThunk'
 import { NewsCardSkeleton } from '@UI/NewsCardSekelton'
-import { Container } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import { FC, useState } from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 import { FileList } from './components/FileList/FileList'
@@ -58,6 +58,14 @@ const OneNews: FC = () => {
             <TextareaView className={s['news-body']}>{news?.body}</TextareaView>
             <Vide src={news?.video} />
             <FileList fileList={news?.files} />
+            <Link to='/news'>
+                <Button
+                    className={s.btn}
+                    variant='outlined'
+                >
+                    К новостям
+                </Button>
+            </Link>
         </Container>
     )
 }

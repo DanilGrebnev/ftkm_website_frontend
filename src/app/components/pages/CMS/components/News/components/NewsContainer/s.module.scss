@@ -1,0 +1,21 @@
+@import '@variables';
+
+:root {
+    --minW: 400px;
+}
+
+.newsContainer {
+    display: flex;
+    max-height: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: adaptiveSize(20, 10);
+    scroll-snap-type: y mandatory;
+    padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+        --minW: 250px;
+    }
+}

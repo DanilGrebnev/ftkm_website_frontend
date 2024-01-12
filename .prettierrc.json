@@ -1,0 +1,13 @@
+{
+    "trailingComma": "es5",
+    "printWidth": 80,
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "arrowParens": "always",
+    "singleAttributePerLine": true,
+    "jsxSingleQuote": true
+}

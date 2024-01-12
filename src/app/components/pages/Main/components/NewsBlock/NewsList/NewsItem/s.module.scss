@@ -23,11 +23,14 @@
     text-align: start;
     hyphens: auto;
     font-weight: bold;
+    max-height: 100px;
+    overflow-y: hidden;
 }
 
 .date {
     @include font-14;
-    font-weight: bold;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 749px) {

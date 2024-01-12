@@ -15,8 +15,9 @@ export const Graduates = () => {
                     />
                     <p>
                         <b>Кабанов В.А.</b> – про&shy;рек&shy;тор по
-                        учеб&shy;ной ра&shy;бо&shy;те ВолгГТУ, экс-пер&shy;вый
-                        замес&shy;ти&shy;тель гла&shy;вы обла&shy;ст&shy;ной
+                        учеб&shy;ной ра&shy;бо&shy;те ВолгГТУ,
+                        экс-&shy;пер&shy;вый за&shy;мес&shy;ти&shy;тель
+                        гла&shy;вы обла&shy;ст&shy;ной
                         адми&shy;ни&shy;стра&shy;ции и
                         пред&shy;се&shy;да&shy;тель об&shy;ла&shy;ст&shy;ной
                         думы.
@@ -28,9 +29,10 @@ export const Graduates = () => {
                         src='/images/Конин.webp'
                     />
                     <p>
-                        <b>Конин А.Н.</b> – гене&shy;рал-лей&shy;те&shy;нант,
-                        замес&shy;ти&shy;тель на&shy;чаль&shy;ника акаде&shy;мии
-                        ФСБ Рос&shy;сии.
+                        <b>Конин А.Н.</b> –
+                        ге&shy;не&shy;рал-лей&shy;те&shy;нант,
+                        за&shy;мес&shy;ти&shy;тель на&shy;чаль&shy;ни&shy;ка
+                        акаде&shy;мии ФСБ Рос&shy;сии.
                     </p>
                 </div>
                 <div className={s.item}>
@@ -43,9 +45,9 @@ export const Graduates = () => {
                         тех&shy;ни&shy;чес&shy;ких наук,
                         за&shy;ве&shy;дую&shy;щий ка&shy;фед&shy;рой
                         «Тех&shy;но&shy;ло&shy;гия ма&shy;те&shy;риа&shy;лов»,
-                        по&shy;чёт&shy;ный ра&shy;бот&shy;ник выс&shy;шего
-                        про&shy;фес&shy;сиональ&shy;ного обра&shy;зова&shy;ния
-                        РФ.
+                        по&shy;чёт&shy;ный ра&shy;бот&shy;ник выс&shy;ше&shy;го
+                        про&shy;фес&shy;сио&shy;на&shy;льно&shy;го
+                        обра&shy;зова&shy;ния РФ.
                     </p>
                 </div>
                 <div className={s.item}>

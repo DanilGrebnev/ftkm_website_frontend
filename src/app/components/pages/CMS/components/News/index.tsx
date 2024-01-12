@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import s from './News.module.scss'
 import { AddNewsBtn } from './components/AddNewsBtn'
 import { ButtonContainer } from './components/ButtonContainer'
+import { NavButton } from './components/NavButton'
 import { NewsContainer } from './components/NewsContainer'
 
 export const News = () => {
@@ -19,6 +20,7 @@ export const News = () => {
             <header className={s.header}>
                 <AddNewsBtn />
                 <ButtonContainer />
+                <NavButton />
             </header>
             <NewsContainer />
         </section>

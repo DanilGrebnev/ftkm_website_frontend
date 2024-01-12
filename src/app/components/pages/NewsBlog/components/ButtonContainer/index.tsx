@@ -13,7 +13,7 @@ export const ButtonContainer: FC = () => {
 
     const { loading } = useGetNewsStore()
 
-    const text = !isCompleteMoreNews ? 'Загрузить ещё' : 'Новости закончились'
+    const text = 'Загрузить ещё'
 
     return (
         <div className={s.btnContainer}>

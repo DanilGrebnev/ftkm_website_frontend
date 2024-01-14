@@ -58,7 +58,7 @@ const OneNews: FC = () => {
             <TextareaView className={s['news-body']}>{news?.body}</TextareaView>
             <Vide src={news?.video} />
             <FileList fileList={news?.files} />
-            <Link to='/news'>
+            <Link className={s.back} to='/news'>
                 <Button
                     className={s.btn}
                     variant='outlined'

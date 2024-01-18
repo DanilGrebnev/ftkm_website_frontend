@@ -64,7 +64,7 @@ const OneNews = () => {
             >
                 <Button
                     className={s.btn}
-                    variant='outlined'
+                    variant='text'
                 >
                     К новостям
                 </Button>

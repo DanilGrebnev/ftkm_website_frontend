@@ -42,12 +42,10 @@ export const Graduates = () => {
                     />
                     <p>
                         <b>Зюбан Н.А.</b> – про&shy;фес&shy;сор, док&shy;тор
-                        тех&shy;ни&shy;чес&shy;ких наук,
-                        за&shy;ве&shy;дую&shy;щий ка&shy;фед&shy;рой
-                        «Тех&shy;но&shy;ло&shy;гия ма&shy;те&shy;риа&shy;лов»,
-                        по&shy;чёт&shy;ный ра&shy;бот&shy;ник выс&shy;ше&shy;го
+                        тех&shy;ни&shy;чес&shy;ких наук, по&shy;чёт&shy;ный
+                        ра&shy;бот&shy;ник выс&shy;ше&shy;го
                         про&shy;фес&shy;сио&shy;на&shy;льно&shy;го
-                        обра&shy;зова&shy;ния РФ.
+                        об&shy;ра&shy;зо&shy;ва&shy;ния РФ.
                     </p>
                 </div>
                 <div className={s.item}>

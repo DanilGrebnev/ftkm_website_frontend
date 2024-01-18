@@ -8,7 +8,7 @@ export const ScientificDirection = () => {
     return (
         <Container
             component='section'
-            maxWidth='xl'
+            maxWidth='lg'
             id='ScientificDirection'
             className={s.ScientificDirection}
         >

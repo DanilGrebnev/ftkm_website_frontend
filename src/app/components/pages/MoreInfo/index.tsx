@@ -32,3 +32,5 @@ export const MoreInfo = () => {
         </React.Fragment>
     )
 }
+
+export default MoreInfo

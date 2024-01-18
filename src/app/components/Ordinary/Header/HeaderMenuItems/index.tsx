@@ -1,5 +1,6 @@
 import { useReturnToCorrectLink } from '@hooks/useReturnToCorrectLink'
-import { Box, Button } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
@@ -45,7 +46,7 @@ export const HeaderMenuItems = () => {
                 <NavLink to='/contacts'>
                     <Button className={style.Btn}>Контакты</Button>
                 </NavLink>
-                
+
                 <NavLink to='/news'>
                     <Button className={style.Btn}>Новости</Button>
                 </NavLink>

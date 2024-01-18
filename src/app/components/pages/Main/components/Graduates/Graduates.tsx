@@ -25,6 +25,21 @@ export const Graduates = () => {
                 </div>
                 <div className={s.item}>
                     <ImgComponent
+                        alt='Кидалов Н.А.'
+                        src='/images/Кидалов.webp'
+                    />
+                    <p>
+                        <b>Кидалов Н.А.</b> – профес&shy;сор, док&shy;тор
+                        тех&shy;ни&shy;чес&shy;ких на&shy;ук,
+                        заве&shy;дую&shy;щий ка&shy;фед&shy;рой «МиТЛП»,
+                        на&shy;чаль&shy;ник управ&shy;ле&shy;ния на&shy;уки и
+                        ин&shy;нова&shy;ций. Лау&shy;реат пре&shy;мии
+                        Вол&shy;гог&shy;рад&shy;ской об&shy;лас&shy;ти в
+                        сфе&shy;ре на&shy;уки и тех&shy;ники.
+                    </p>
+                </div>
+                <div className={s.item}>
+                    <ImgComponent
                         alt='Конин А.Н.'
                         src='/images/Конин.webp'
                     />
@@ -46,21 +61,6 @@ export const Graduates = () => {
                         ра&shy;бот&shy;ник выс&shy;ше&shy;го
                         про&shy;фес&shy;сио&shy;на&shy;льно&shy;го
                         об&shy;ра&shy;зо&shy;ва&shy;ния РФ.
-                    </p>
-                </div>
-                <div className={s.item}>
-                    <ImgComponent
-                        alt='Кидалов Н.А.'
-                        src='/images/Кидалов.webp'
-                    />
-                    <p>
-                        <b>Кидалов Н.А.</b> – профес&shy;сор, док&shy;тор
-                        тех&shy;ни&shy;чес&shy;ких на&shy;ук,
-                        заве&shy;дую&shy;щий ка&shy;фед&shy;рой «МиТЛП»,
-                        на&shy;чаль&shy;ник управ&shy;ле&shy;ния на&shy;уки и
-                        ин&shy;нова&shy;ций. Лау&shy;реат пре&shy;мии
-                        Вол&shy;гог&shy;рад&shy;ской об&shy;лас&shy;ти в
-                        сфе&shy;ре на&shy;уки и тех&shy;ники.
                     </p>
                 </div>
             </Grid>

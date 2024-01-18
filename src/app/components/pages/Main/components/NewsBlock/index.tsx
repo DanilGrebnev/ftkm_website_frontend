@@ -2,7 +2,7 @@ import { useAppDispatch } from '@hooks/useAppDispatch'
 import { useAppSelector } from '@hooks/useAppSelector'
 import { useGetWindowWidth } from '@hooks/useGetWindowWidth'
 import { useShowIfIsView } from '@hooks/useShowIfIsView'
-import { Container } from '@mui/material'
+import Container from '@mui/material/Container'
 import { NewsServices } from '@redux/slices/news/NewsServicesThunk'
 import { useEffect } from 'react'
 

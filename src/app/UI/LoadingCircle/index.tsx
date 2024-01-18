@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import React from 'react'
 
-import { ICircle } from './interface'
+import { type ICircle } from './interface'
 import s from './s.module.scss'
 
 export const LoadingCircle: React.FC<ICircle> = ({

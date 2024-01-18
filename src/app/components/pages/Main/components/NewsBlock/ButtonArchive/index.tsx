@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 import clsx from 'clsx'
 import { type FC, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,14 +9,14 @@ interface IButtonArchiveProps {
     className?: string
 }
 
-export const ButtonArchive: FC<IButtonArchiveProps> = memo(props => {
+export const ButtonArchive: FC<IButtonArchiveProps> = memo((props) => {
     const { className } = props
     const navigate = useNavigate()
 
     return (
         <div className={clsx(s.ButtonArchive, className)}>
             <Button
-                variant='outlined'
+                variant='text'
                 className={s.button}
                 onClick={() => navigate('/news')}
             >

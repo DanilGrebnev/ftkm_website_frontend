@@ -1,5 +1,7 @@
-import VstuIcon from '@/assets/VSTU.png'
+import VstuIcon from '@/assets/VSTU.webp'
 import { FC } from 'react'
+
+import { ImgComponent } from '../ImgComponent'
 
 interface IVSTUIcon {
     style?: React.CSSProperties
@@ -12,9 +14,8 @@ export const VSTUIcon: FC<IVSTUIcon> = ({ style, className }) => {
             className={className}
             href='https://www.vstu.ru/'
         >
-            <img
-                alt='vstuIcon'
-                style={style}
+            <ImgComponent
+                alt='ВолгГТУ сайт МиТЛП'
                 src={VstuIcon}
             />
         </a>

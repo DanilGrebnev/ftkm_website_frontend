@@ -29,6 +29,9 @@
     @include font-22;
     text-align: justify;
     line-height: 2;
+
+    font-weight: 600;
+
     &:before {
         @include redLine;
     }

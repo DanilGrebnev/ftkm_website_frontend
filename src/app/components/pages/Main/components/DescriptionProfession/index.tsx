@@ -24,8 +24,14 @@ export const DescriptionProfession = () => {
                     навыками для решения производственных задач, а значит
                     станешь востребованным специалистом на рынке труда!
                 </p>
-                <ImgComponent src={'/images/description/1.webp'} />
-                <ImgComponent src={'/images/description/2.webp'} />
+                <ImgComponent
+                    alt='ВолгГТУ сайт'
+                    src={'/images/description/1.webp'}
+                />
+                <ImgComponent
+                    alt='ВолгГТУ сайт'
+                    src={'/images/description/2.webp'}
+                />
             </div>
         </Container>
     )

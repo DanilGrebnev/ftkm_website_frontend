@@ -1,3 +1,4 @@
+import { ImgComponent } from '@/app/components/Ordinary/ImgComponent'
 import { Grid } from '@components/containers/Grid'
 import React from 'react'
 
@@ -15,9 +16,9 @@ export const Footer: React.FC<IFooter> = ({ style }) => {
         >
             <a href='/'>
                 <Grid className={s.Grid}>
-                    <img
-                        alt='VSTU logo'
-                        src='images/Logo_vstu.png'
+                    <ImgComponent
+                        alt='ВолгГТУ сайт МиТЛП'
+                        src='images/Logo_vstu.webp'
                     />
                     <p>
                         Кафедра{' '}

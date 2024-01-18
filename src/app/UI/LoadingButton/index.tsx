@@ -30,7 +30,7 @@ export const LoadingButton: React.FC<ILoadingButton> = ({
             endIcon={
                 loading && <span style={{ width: '20px', height: '20px' }} />
             }
-            variant="outlined"
+            variant='text'
             disabled={disabled}
         >
             {text}

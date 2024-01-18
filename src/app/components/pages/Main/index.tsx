@@ -33,9 +33,7 @@ export const Main = () => {
         <section className={clsx('Main-page', style.Main)}>
             <Hero />
             <CardList />
-            <ErrorBoundary>
-                <DescriptionProfession />
-            </ErrorBoundary>
+            <DescriptionProfession />
             <TextAndVideo1 />
             <TextAndVideo2 />
             <CareerOpportunities />

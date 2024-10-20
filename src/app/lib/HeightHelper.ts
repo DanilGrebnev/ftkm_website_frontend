@@ -9,7 +9,7 @@ class HeightHelper {
         if (Number.isFinite(number)) {
             this._height = window.innerHeight - number
         } else {
-            throw new Error('Ошибка. Свойство Heigth может быть только числом')
+            throw new Error('Ошибка. Свойство height может быть только числом')
         }
     }
 

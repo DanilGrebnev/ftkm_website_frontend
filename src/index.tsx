@@ -4,13 +4,16 @@ import { createRoot } from 'react-dom/client'
 
 import { ErrorBoundary } from './app/Providers'
 import './index.scss'
+import { FramerMotionProvider } from '@/app/Providers/FramerMotionProvider'
 
 const container = document.getElementById('root')!
 
 createRoot(container).render(
     <ErrorBoundary>
+        <FramerMotionProvider>
         <StoreProvider>
             <RouterProvider />
         </StoreProvider>
+        </FramerMotionProvider>
     </ErrorBoundary>
 )

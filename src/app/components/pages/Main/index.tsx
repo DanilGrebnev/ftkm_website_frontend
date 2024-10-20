@@ -1,6 +1,5 @@
-import { ErrorBoundary } from '@/app/Providers'
 import { useSetDocumentTitle } from '@hooks/useSetDocumentTitle'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 
 import {
     Admission,
@@ -19,7 +18,7 @@ import {
     TextAndVideo1,
     TextAndVideo2,
 } from './components'
-import style from './style.module.scss'
+import s from './style.module.scss'
 
 export const Main = () => {
     const title =
@@ -30,7 +29,7 @@ export const Main = () => {
     })
 
     return (
-        <section className={clsx('Main-page', style.Main)}>
+        <section className={clsx('Main-page', s.Main)}>
             <Hero />
             <CardList />
             <DescriptionProfession />

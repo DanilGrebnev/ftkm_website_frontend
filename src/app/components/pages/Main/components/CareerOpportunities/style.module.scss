@@ -8,21 +8,21 @@
     @include mr-t-b;
     @include pd-t-b;
 
-    h2 {
+    .title {
         text-align: center;
         @include font-42;
         @include h2-title-mr-b;
     }
 
-    h4 {
+    .subtitle {
         margin-bottom: 10px;
         @include font-24;
         text-align: start;
         font-weight: bold;
     }
 
-    h2,
-    a[data-type='button'] {
+    .title ,
+    .button{
         grid-column: 1/4;
     }
 

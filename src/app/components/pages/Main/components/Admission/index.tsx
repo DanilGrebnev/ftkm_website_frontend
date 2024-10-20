@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import { ItemCircle } from './ItemCircle'
 import s from './style.module.scss'
+import { AnimationSlideBlock } from '@UI/AnimationSlideBlock'
 
 export const Admission = () => {
     const year = new Date().getFullYear()
@@ -18,38 +19,57 @@ export const Admission = () => {
                 maxWidth='xl'
             >
                 <div className={s['admission-content']}>
-                    <h3 className={clsx(s['circle-title'], s.title1)}>
-                        Количество бюджетных мест
-                    </h3>
-                    <h3 className={clsx(s['circle-title'], s.title2)}>
-                        Проходной балл
-                    </h3>
-                    <h3 className={clsx(s['circle-title'], s.title3)}>
-                        Срок обучения
-                    </h3>
-                    <ItemCircle
-                        className={(clsx(s.circle), s.circle1)}
-                        circleText='40'
-                    />
-                    <ItemCircle
-                        className={clsx(s.circle, s.circle2)}
-                        circleText='118'
-                    />
-                    <ItemCircle
-                        className={clsx(s.circle, s.circle3)}
-                        circleText='4'
-                        subCircleText='Бакалавриат'
-                    />
-                    <ItemCircle
-                        className={clsx(s.circle, s.circle4)}
-                        circleText='2'
-                        subCircleText='Магистратура'
-                    />
+                    <AnimationSlideBlock>
+                        <h3 className={clsx(s['circle-title'], s.title1)}>
+                            Количество бюджетных мест
+                        </h3>
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock>
+                        <h3 className={clsx(s['circle-title'], s.title2)}>
+                            Проходной балл
+                        </h3>
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock
+                        className={clsx(s['circle-title'], s.title3)}
+                    >
+                        <h3>Срок обучения</h3>
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock delay={1}>
+                        <ItemCircle
+                            className={clsx(s.circle, s.circle1)}
+                            circleText='40'
+                        />
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock delay={1}>
+                        <ItemCircle
+                            className={clsx(s.circle, s.circle2)}
+                            circleText='118'
+                        />
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock delay={1}>
+                        <ItemCircle
+                            className={clsx(s.circle, s.circle3)}
+                            circleText='4'
+                            subCircleText='Бакалавриат'
+                        />
+                    </AnimationSlideBlock>
+                    <AnimationSlideBlock delay={1}>
+                        <ItemCircle
+                            className={clsx(s.circle, s.circle4)}
+                            circleText='2'
+                            subCircleText='Магистратура'
+                        />
+                    </AnimationSlideBlock>
                 </div>
-                <p className={s['footer-text']}>
-                    А также возможность продлить обучение по программе
-                    Аспирантуры
-                </p>
+                <AnimationSlideBlock
+                    delay={1.5}
+                    direction='left'
+                >
+                    <p className={s['footer-text']}>
+                        А также возможность продлить обучение по программе
+                        Аспирантуры
+                    </p>
+                </AnimationSlideBlock>
             </Container>
         </section>
     )

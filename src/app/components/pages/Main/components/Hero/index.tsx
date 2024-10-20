@@ -5,16 +5,17 @@ import { HeightCalcHelper } from 'src/app/lib/HeightHelper'
 import s from './style.module.scss'
 
 export const Hero = () => {
-    const [height, setHeight] = useState(0)
+    const [height, setHeight] = useState<number | null>(null)
 
     useEffect(() => {
         setHeight(HeightCalcHelper.height)
     }, [])
+    const calculatedHeight = !height ? '100vh' : height
 
     return (
         <section className={clsx('Hero', s.Hero)}>
             <div
-                style={{ height: height }}
+                style={{ height: calculatedHeight }}
                 className={s.VideoFilter}
             >
                 <div className={s.VideoFilterContent}>
@@ -38,7 +39,7 @@ export const Hero = () => {
                 preload='metadata'
                 muted
                 poster='images/preloadmetallurgy.webp'
-                style={{ height: height }}
+                style={{ height: calculatedHeight }}
             >
                 <source src='videos/metallurgy.mp4' />
             </video>

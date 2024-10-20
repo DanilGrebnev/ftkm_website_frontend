@@ -1,6 +1,6 @@
 import { useAppSelector } from '@hooks/useAppSelector'
 import { FC } from 'react'
-
+import { m } from 'framer-motion'
 import { NewsItem } from './NewsItem'
 
 interface INewsList {
@@ -13,16 +13,16 @@ const NewsList: FC<INewsList> = (props) => {
     const lastNews = useAppSelector((state) => state.news.lastNews)
 
     return (
-        <div className={className}>
-            {lastNews.map((data) => {
-                return (
-                    <NewsItem
-                        key={data._id}
-                        {...data}
-                    />
-                )
+        <m.div
+            className={className}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            {lastNews.map((data, i) => {
+                return <NewsItem {...data} />
             })}
-        </div>
+        </m.div>
     )
 }
 

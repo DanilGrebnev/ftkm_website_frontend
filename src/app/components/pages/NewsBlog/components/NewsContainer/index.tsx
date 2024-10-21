@@ -1,26 +1,17 @@
-import { useAppSelector } from '@/app/hooks/useAppSelector'
 import { NewsCardItem } from '@components/Smart/NewsCardItem'
 import { Grid } from '@components/containers/Grid'
-import { useGetNews } from '@hooks/useGetNews'
 import clsx from 'clsx'
-import { useEffect } from 'react'
 
 import s from './s.module.scss'
+import { useGetNewsQuery } from '@/app/shared/api/news/newsApiHooks'
 
-export const NewsContainer: React.FC = () => {
-    const news = useAppSelector((state) => state.news.news)
-    const { getNews } = useGetNews()
-
-    useEffect(() => {
-        if (news.length) return
-
-        getNews()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+// TODO: Компонент с новостями страницы новостей
+export const NewsContainer = () => {
+    const { data } = useGetNewsQuery()
 
     return (
         <Grid className={clsx(s['news-blog'])}>
-            {news.map((news) => (
+            {data?.map((news) => (
                 <NewsCardItem
                     key={news._id}
                     {...news}

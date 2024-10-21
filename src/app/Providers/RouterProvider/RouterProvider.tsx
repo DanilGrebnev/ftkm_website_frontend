@@ -1,9 +1,9 @@
 import { WithAuth } from '@/app/HOC/WithAuth'
-import { NotFound } from '@/app/UI/NotFound'
 import { LazyCmsPage } from '@/app/components/pages/CMS/LazyCmsPage'
 import { LazyLoginPage } from '@/app/components/pages/Login/LazyLoginPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { App } from 'src/App'
+import { LazyNotFound } from '@UI/NotFound/NotFoundLazy'
 
 export enum PageTitles {
     newsPage = 'МиТЛП | Новости',
@@ -12,6 +12,7 @@ export enum PageTitles {
     contactsPage = 'МиТЛП | Контакты',
 }
 
+// TODO: Роутинг приложения
 export const RouterProvider = () => {
     return (
         <BrowserRouter>
@@ -34,7 +35,7 @@ export const RouterProvider = () => {
                 />
                 <Route
                     path='*'
-                    element={<NotFound />}
+                    element={<LazyNotFound />}
                 />
             </Routes>
         </BrowserRouter>

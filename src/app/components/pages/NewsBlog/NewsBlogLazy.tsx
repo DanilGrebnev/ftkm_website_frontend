@@ -3,6 +3,6 @@ import { LoadingCircle } from '@/app/UI/LoadingCircle'
 import { lazy } from 'react'
 
 export const NewsBlogLazy = withSuspense(
-    lazy(() => import('./index')),
+    lazy(() => import(/* webpackChunkName: "NewsBlogLazy"*/ './index')),
     <LoadingCircle fullScreen />
 )

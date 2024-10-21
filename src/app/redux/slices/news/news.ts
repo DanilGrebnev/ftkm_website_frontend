@@ -4,6 +4,8 @@ import { ExtraReducers } from './ExtraReducers'
 import { NewsServicesActions } from './NewsServicesActions'
 import { INewsSchema } from './schema/newsSchema'
 
+// TODO: Заменить асинхронную логику на Tanstack Query
+
 const initialState = {
     news: [],
     getNewsError: false,

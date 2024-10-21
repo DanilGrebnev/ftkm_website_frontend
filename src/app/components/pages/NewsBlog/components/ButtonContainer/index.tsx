@@ -1,29 +1,20 @@
 import { LoadingButton } from '@UI/LoadingButton'
-import { useGetNews } from '@hooks/useGetNews'
-import { useGetNewsStore } from '@hooks/useGetNewsStore'
-import { useMoreNewsComplete } from '@hooks/useMoreNewsComplete'
-import { FC } from 'react'
 
 import s from './s.module.scss'
+import { useGetNewsQuery } from '@/app/shared/api/news/newsApiHooks'
 
-export const ButtonContainer: FC = () => {
-    const { getNews } = useGetNews()
-
-    const { isCompleteMoreNews } = useMoreNewsComplete()
-
-    const { loading } = useGetNewsStore()
-
-    const text = 'Загрузить ещё'
+export const ButtonContainer = () => {
+    const { isFetching, fetchNextPage } = useGetNewsQuery()
 
     return (
         <div className={s.btnContainer}>
             {
                 <LoadingButton
-                    text={text}
+                    text='Загрузить ещё'
                     size='medium'
-                    disabled={loading || isCompleteMoreNews}
-                    loading={loading}
-                    onClick={() => getNews()}
+                    disabled={isFetching}
+                    loading={isFetching}
+                    onClick={fetchNextPage}
                 />
             }
         </div>

@@ -5,15 +5,18 @@ import { createRoot } from 'react-dom/client'
 import { ErrorBoundary } from './app/Providers'
 import './index.scss'
 import { FramerMotionProvider } from '@/app/Providers/FramerMotionProvider'
+import { TanStackQueryProvider } from '@/app/Providers/TanStackQueryProvider'
 
 const container = document.getElementById('root')!
 
 createRoot(container).render(
     <ErrorBoundary>
         <FramerMotionProvider>
-        <StoreProvider>
-            <RouterProvider />
-        </StoreProvider>
+            <TanStackQueryProvider>
+                <StoreProvider>
+                    <RouterProvider />
+                </StoreProvider>
+            </TanStackQueryProvider>
         </FramerMotionProvider>
     </ErrorBoundary>
 )

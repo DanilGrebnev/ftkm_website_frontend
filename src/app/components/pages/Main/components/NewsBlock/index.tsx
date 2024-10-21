@@ -10,9 +10,12 @@ import { LazyAccordion } from './Accordion/LazyAccordion'
 import { ButtonArchive } from './ButtonArchive'
 import { LazyNewsList } from './NewsList/LazyNewsList'
 import s from './style.module.scss'
+import { globalVariables } from '@globalVariables'
 
+// TODO: Получние новостей на главной странице, useGetLastNewsQuery
 export const NewsBlock = () => {
     const dispatch = useAppDispatch()
+    // const { data } = useGetLastNewsQuery
 
     const lastNews = useAppSelector((state) => state.news.lastNews)
     const { ref, active } = useShowIfIsView({ threshold: 0.3 })
@@ -20,7 +23,7 @@ export const NewsBlock = () => {
 
     useEffect(() => {
         if (!active) return
-        dispatch(NewsServices.getLastNews(8))
+        dispatch(NewsServices.getLastNews(globalVariables.limit))
     }, [active, dispatch])
 
     return (

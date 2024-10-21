@@ -1,8 +1,7 @@
 import LoadingBtn from '@mui/lab/LoadingButton'
 import React from 'react'
-
 import s from './s.module.scss'
-
+import { clsx } from 'clsx'
 interface ILoadingButton {
     loading?: boolean
     onClick?: () => void
@@ -23,13 +22,14 @@ export const LoadingButton: React.FC<ILoadingButton> = ({
 }) => {
     return (
         <LoadingBtn
-            className={s.LoadingBtn + ' ' + className || ''}
+            className={clsx(s.LoadingBtn, className)}
             size={size}
             onClick={onClick}
             loading={loading}
-            endIcon={
-                loading && <span style={{ width: '20px', height: '20px' }} />
-            }
+            sx={loading ? { pointerEvents: 'none' } : {}}
+            // endIcon={
+            //     loading && <span style={{ width: '20px', height: '20px' }} />
+            // }
             variant='text'
             disabled={disabled}
         >

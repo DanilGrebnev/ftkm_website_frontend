@@ -1,4 +1,3 @@
-import { NotFound } from '@UI/NotFound'
 import { Header } from '@components/Ordinary/Header'
 import { Main } from '@components/pages/Main'
 import { Route, Routes } from 'react-router-dom'
@@ -9,7 +8,9 @@ import { ContactsPageLazy } from './app/components/pages/Contacts/ContactsPageLa
 import { MoreInfoPageLazy } from './app/components/pages/MoreInfo/MoreInfoPageLazy'
 import { NewsBlogLazy } from './app/components/pages/NewsBlog/NewsBlogLazy'
 import { OneNewsLazy } from './app/components/pages/OneNews/OneNewsLazy'
+import { LazyNotFound } from '@UI/NotFound/NotFoundLazy'
 
+// TODO: Роутинг Сайта
 export const App = () => (
     <div className='App'>
         <Header />
@@ -44,7 +45,7 @@ export const App = () => (
             />
             <Route
                 path='*'
-                element={<NotFound />}
+                element={<LazyNotFound />}
             />
         </Routes>
     </div>

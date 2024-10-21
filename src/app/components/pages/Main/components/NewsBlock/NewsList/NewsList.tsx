@@ -7,9 +7,10 @@ interface INewsList {
     className?: string
 }
 
+// TODO: useGetLastNewsQuery - mobile
 const NewsList: FC<INewsList> = (props) => {
     const { className } = props
-
+    // const { data } = useGetLastNewsQuery
     const lastNews = useAppSelector((state) => state.news.lastNews)
 
     return (

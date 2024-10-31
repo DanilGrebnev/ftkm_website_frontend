@@ -1,42 +1,16 @@
-import { useAppSelector } from '@/app/hooks/useAppSelector'
 import { LoadingButton } from '@UI/LoadingButton'
-import { useGetNewsStore } from '@hooks/useGetNewsStore'
-import { useSendNews } from '@hooks/useSendNews'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { FC } from 'react'
 
-export const SendButton = () => {
+type Props = Parameters<typeof LoadingButton>[0]
+
+export const SendButton: FC<Props> = (props) => {
     const { _id } = useParams()
-    const newsFields = useAppSelector((state) => state.news.newsFields)
-
-    const [disabled, setDisabled] = useState(false)
-
-    const { fetchNews } = useGetNewsStore()
-
-    const { postNews, editNews } = useSendNews()
-
-    const onClick = _id
-        ? () => editNews({ body: newsFields, _id })
-        : () => postNews(newsFields)
-
-    useEffect(() => {
-        if (!newsFields.body || !newsFields.title) {
-            setDisabled(true)
-        } else {
-            setDisabled(false)
-        }
-    }, [newsFields])
 
     return (
         <LoadingButton
-            onClick={() => {
-                setDisabled(true)
-                onClick()
-                setTimeout(setDisabled, 3000, false)
-            }}
-            loading={fetchNews}
+            {...props}
             text={_id ? 'Изменить' : 'Отправить'}
-            disabled={disabled}
         />
     )
 }

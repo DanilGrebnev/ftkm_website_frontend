@@ -1,78 +1,128 @@
 import { LoadingCircle } from '@/app/UI/LoadingCircle'
-import { useAppDispatch } from '@/app/hooks/useAppDispatch'
-import { useAppSelector } from '@/app/hooks/useAppSelector'
-import { NewsServices } from '@/app/redux/slices/news/NewsServicesThunk'
 import { AlertModal } from '@UI/AlertModal'
 import { useGetNewsStore } from '@hooks/useGetNewsStore'
 import { returnAlertType } from '@lib/returnAlertType'
-import CyrillicToTranslit from 'cyrillic-to-translit-js'
-import { ChangeEvent, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { BodyInput } from './components/BodyInput'
 import { FileList } from './components/FileList/FileList'
-import { SendButton } from './components/SendButton'
 import { TitleInput } from './components/TitleInput'
 import { VideoLinkInput } from './components/VideoLinkInput/VideoLink'
 import s from './style.module.scss'
+import {
+    useGetOneNewsQuery,
+    useNewsMutation,
+} from '@/app/shared/api/news/newsApiHooks'
+import { useUploadFileMutation } from '@/app/shared/api/files/filesApiHooks'
+import { useForm } from 'react-hook-form'
+import { INewsFields } from '@interfaces/News'
+import { globalVariables } from '@globalVariables'
+import LoadingBtn from '@mui/lab/LoadingButton'
 
 const OneNewsEditor = () => {
     const { _id } = useParams()
-    const loading = useAppSelector((state) => state.news.loading)
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
+    const { mutate: newsMutation } = useNewsMutation({ id: _id })
+    const { mutate: fileMutation, isPending } = useUploadFileMutation({
+        newsId: _id,
+    })
 
-    useEffect(() => {
-        if (!_id) return
+    const { data, isLoading } = useGetOneNewsQuery({
+        id: _id,
+        enabled: !!_id,
+    })
 
-        dispatch(NewsServices.getOneNews(_id))
-            .unwrap()
-            .catch(() => {
-                alert('Ошибка получения новости')
-                navigate('/cms')
-            })
-    }, [_id, dispatch, navigate])
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm<Omit<INewsFields, 'files'>>({
+        mode: 'all',
+        values: {
+            title: data?.data?.title ?? '',
+            body: data?.data?.body ?? '',
+            video: data?.data?.video ?? '',
+        },
+    })
+
+    const onSubmit = handleSubmit((data) => newsMutation(data))
 
     const { showNewsResponseModal, newsResponseModalContent } =
         useGetNewsStore()
 
     const textType = returnAlertType(newsResponseModalContent)
 
-    if (loading) {
-        return <LoadingCircle fullScreen={true} />
-    }
+    // if (isFetching) {
+    //     return <LoadingCircle fullScreen={true} />
+    // }
 
-    const onSubmitFile = (e: ChangeEvent<HTMLInputElement>) => {
-        const { transform } = CyrillicToTranslit()
+    const onSubmitFile = async (e: ChangeEvent<HTMLInputElement>) => {
+        const CyrillicToTranslit = await import('cyrillic-to-translit-js')
+        const { transform } = CyrillicToTranslit.default()
         if (!_id) return
-        const file = e.target.files
+        const file = e.target.files?.[0]
         if (!file) return
         const formData = new FormData()
-        const fileName = transform(file[0].name.toLocaleLowerCase(), '_')
-        formData.append('file', file[0], fileName)
-
-        dispatch(NewsServices.uploadFile({ formData, newsId: _id }))
+        const fileName = transform(file.name.toLocaleLowerCase(), '_')
+        formData.append('file', file, fileName)
+        fileMutation({ formData, newsId: _id })
     }
-
-    const acceptFiles =
-        'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, image/*'
 
     return (
         <div className={s.EditorContainer}>
-            <TitleInput />
-            <BodyInput />
-            <FileList />
-            <VideoLinkInput />
+            <TitleInput
+                {...register('title', {
+                    required: 'Поле не может быть пустым',
+                    minLength: {
+                        value: 5,
+                        message: 'Не менее 5 символов',
+                    },
+                })}
+                error={!!errors.title}
+                helperText={errors.title?.message}
+            />
+            <BodyInput
+                {...register('body', {
+                    required: 'Поле не может быть пустым',
+                    minLength: {
+                        value: 10,
+                        message: 'Не менее 10 символов',
+                    },
+                })}
+                error={!!errors.body}
+                helperText={errors.body?.message}
+            />
+            <FileList
+                fileList={data?.data?.files ?? []}
+                loading={[isPending, isLoading]}
+            />
+            <VideoLinkInput
+                error={!!errors.video}
+                helperText={errors.video?.message}
+                {...register('video', {
+                    pattern: {
+                        value: /https?:\/\/youtu\.be.+/gm,
+                        message: `Значение должно быть ссылкой на видео youtube
+                                например: https://youtu.be/fAFrqqQybwU?si=9OT2f9l96SnAAr2y`,
+                    },
+                })}
+            />
             {_id && (
                 <input
                     type='file'
                     name='file'
                     onChange={onSubmitFile}
-                    accept={acceptFiles}
+                    accept={globalVariables.acceptUploadFiles}
                 />
             )}
-            <SendButton />
+
+            <LoadingBtn
+                onClick={onSubmit}
+                disabled={!isValid}
+            >
+                {_id ? 'Изменить' : 'Создать'}
+            </LoadingBtn>
+
             <AlertModal
                 type={textType}
                 title={newsResponseModalContent}

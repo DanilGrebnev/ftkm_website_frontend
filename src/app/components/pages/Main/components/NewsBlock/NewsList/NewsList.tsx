@@ -1,7 +1,8 @@
-import { useAppSelector } from '@hooks/useAppSelector'
 import { FC } from 'react'
 import { m } from 'framer-motion'
 import { NewsItem } from './NewsItem'
+import { useGetLastNewsQuery } from '@/app/shared/api/news/newsApiHooks'
+import { INewsItem } from '@interfaces/News'
 
 interface INewsList {
     className?: string
@@ -10,8 +11,8 @@ interface INewsList {
 // TODO: useGetLastNewsQuery - mobile
 const NewsList: FC<INewsList> = (props) => {
     const { className } = props
-    // const { data } = useGetLastNewsQuery
-    const lastNews = useAppSelector((state) => state.news.lastNews)
+
+    const { data: dataNews } = useGetLastNewsQuery()
 
     return (
         <m.div
@@ -20,8 +21,13 @@ const NewsList: FC<INewsList> = (props) => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
-            {lastNews.map((data, i) => {
-                return <NewsItem {...data} />
+            {dataNews?.data?.map((news: INewsItem) => {
+                return (
+                    <NewsItem
+                        key={news._id}
+                        {...news}
+                    />
+                )
             })}
         </m.div>
     )

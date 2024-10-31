@@ -6,6 +6,7 @@ import { ErrorBoundary } from './app/Providers'
 import './index.scss'
 import { FramerMotionProvider } from '@/app/Providers/FramerMotionProvider'
 import { TanStackQueryProvider } from '@/app/Providers/TanStackQueryProvider'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const container = document.getElementById('root')!
 
@@ -16,6 +17,7 @@ createRoot(container).render(
                 <StoreProvider>
                     <RouterProvider />
                 </StoreProvider>
+                <ReactQueryDevtools/>
             </TanStackQueryProvider>
         </FramerMotionProvider>
     </ErrorBoundary>

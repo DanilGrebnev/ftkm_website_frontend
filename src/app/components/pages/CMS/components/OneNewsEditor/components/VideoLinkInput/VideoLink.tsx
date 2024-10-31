@@ -1,27 +1,20 @@
-import { useAppSelector } from '@/app/hooks/useAppSelector'
-import { useSetData } from '@hooks/useSetData'
 import { TextField } from '@mui/material'
-import { ChangeEvent, memo } from 'react'
+import { forwardRef, memo } from 'react'
 
-export const VideoLinkInput = memo(() => {
-    const newsFieldVideo = useAppSelector(
-        (state) => state.news.newsFields.video
-    )
-    const { setData } = useSetData()
+type Props = Parameters<typeof TextField>[0]
 
-    return (
-        <TextField
-            autoComplete='off'
-            value={newsFieldVideo}
-            name='video'
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData({ name: 'video', value: e.target.value })
-            }
-            sx={{ maxWidth: '1000px' }}
-            label='Ссылка на видео'
-            helperText={'Не обязательно'}
-        />
-    )
-})
+export const VideoLinkInput = memo(
+    forwardRef<HTMLInputElement, Props>((props, ref) => {
+        return (
+            <TextField
+                label={'Ссылка на YouTube'}
+                ref={ref}
+                autoComplete='off'
+                sx={{ maxWidth: '1000px' }}
+                {...props}
+            />
+        )
+    })
+)
 
 VideoLinkInput.displayName = 'VideoLinkInput'

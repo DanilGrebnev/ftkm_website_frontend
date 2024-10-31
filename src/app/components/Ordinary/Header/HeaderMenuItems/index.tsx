@@ -3,9 +3,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid'
-
-import { muiStyles } from '../mui-styles'
+import { StyledEngineProvider } from '@mui/material/styles'
 import { pageList } from '../pageList'
 import style from '../style.module.scss'
 
@@ -13,44 +11,50 @@ export const HeaderMenuItems = () => {
     const { goRightPage } = useReturnToCorrectLink()
 
     return (
-        <Box
-            className={clsx('Box2', style.Box2)}
-            sx={muiStyles.Box2.sx}
-        >
-            <nav>
-                <NavLink to='/'>
-                    <Button className={style.Btn}>Главная</Button>
-                </NavLink>
+        <StyledEngineProvider injectFirst={true}>
+            <Box
+                className={clsx('Box2', style.Box2)}
+                sx={{
+                    display: { sm: 'none', lg: 'flex' },
+                }}
+            >
+                <nav>
+                    <NavLink to='/'>
+                        <Button className={style.Btn}>Главная</Button>
+                    </NavLink>
 
-                {pageList.map(({ text, href }) => {
-                    return (
-                        <a
-                            key={uuidv4()}
-                            href={href}
-                        >
-                            <Button
-                                onClick={() => goRightPage('/')}
-                                className={style.Btn}
-                                variant='text'
+                    {pageList.map(({ text, href }, i) => {
+                        return (
+                            <a
+                                key={i}
+                                href={href}
                             >
-                                {text}
-                            </Button>
-                        </a>
-                    )
-                })}
+                                <Button
+                                    onClick={() => goRightPage('/')}
+                                    className={style.Btn}
+                                    variant='text'
+                                >
+                                    {text}
+                                </Button>
+                            </a>
+                        )
+                    })}
 
-                <NavLink to='/moreinfo'>
-                    <Button className={style.Btn}>Информация о кафедре</Button>
-                </NavLink>
+                    <NavLink to='/moreinfo'>
+                        <Button className={style.Btn}>
+                            Информация о кафедре
+                        </Button>
+                    </NavLink>
 
-                <NavLink to='/contacts'>
-                    <Button className={style.Btn}>Контакты</Button>
-                </NavLink>
+                    <NavLink to='/contacts'>
+                        <Button className={style.Btn}>Контакты</Button>
+                    </NavLink>
 
-                <NavLink to='/news'>
-                    <Button className={style.Btn}>Новости</Button>
-                </NavLink>
-            </nav>
-        </Box>
+                    <NavLink to='/news'>
+                        <Button className={style.Btn}>Новости</Button>
+                    </NavLink>
+                </nav>
+            </Box>
+        </StyledEngineProvider>
     )
 }

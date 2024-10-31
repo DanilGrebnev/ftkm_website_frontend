@@ -8,6 +8,7 @@ const ImgList = () => {
         <div className={s.imgWrapper}>
             {data.map((data, i) => (
                 <m.div
+                    key={i}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 1 }}

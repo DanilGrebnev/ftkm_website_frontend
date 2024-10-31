@@ -2,13 +2,6 @@ export const muiStyles = {
     Box1: {
         display: { xs: 'flex', md: 'none' },
     },
-    Box2: {
-        sx: {
-            flexGrow: 1,
-            display: 'flex',
-            justifyContent: 'center',
-        },
-    },
     Typography1: {
         sx: {
             mr: 2,

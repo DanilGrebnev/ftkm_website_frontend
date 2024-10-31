@@ -4,11 +4,12 @@ import { useGetNewsStore } from '@hooks/useGetNewsStore'
 import { useMoreNewsComplete } from '@hooks/useMoreNewsComplete'
 
 import s from './s.module.scss'
+import { useGetNewsQuery } from '@/app/shared/api/news/newsApiHooks'
 
 export const ButtonContainer = () => {
-    const { getNews } = useGetNews()
-
-    const { isCompleteMoreNews } = useMoreNewsComplete()
+    // const { getNews } = useGetNews()
+    const { fetchNextPage, isFetchingNextPage, hasNextPage} = useGetNewsQuery()
+    // const { isCompleteMoreNews } = useMoreNewsComplete()
 
     /**
      * Сколько статей пропустить при запросе
@@ -16,18 +17,17 @@ export const ButtonContainer = () => {
      * т.к. лимит статей отрисовывается сразу
      * при первом рендере
      */
-    const { loading } = useGetNewsStore()
-
-    const text = isCompleteMoreNews ? 'новости кончались' : 'загрузить ещё'
+    console.log('hasNextPage', hasNextPage)
+    const text = isFetchingNextPage? 'идёт загрузка': !hasNextPage ? 'новости кончились' : 'загрузить ещё'
 
     return (
         <div className={s.btnContainer}>
             <LoadingButton
                 text={text}
                 size='medium'
-                disabled={loading || isCompleteMoreNews}
-                loading={loading}
-                onClick={() => getNews()}
+                disabled={!hasNextPage || isFetchingNextPage}
+                loading={isFetchingNextPage}
+                onClick={() => fetchNextPage()}
             />
         </div>
     )

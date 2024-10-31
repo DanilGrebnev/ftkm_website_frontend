@@ -1,9 +1,7 @@
-import { useAppDispatch } from '@/app/hooks/useAppDispatch'
 import { INewsFiles } from '@/app/interface/News'
 import { createHrefToFile } from '@/app/lib/createHrefToFile'
 import { selectFileExtensionIcon } from '@/app/lib/selectFileExtensionIcon'
 import { sliceExtensionInString } from '@/app/lib/sliceExtensionString'
-import { NewsServices } from '@/app/redux/slices/news/NewsServicesThunk'
 import { AlertDialog } from '@UI/AlertDialog'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
@@ -12,6 +10,8 @@ import clsx from 'clsx'
 import { type FC, memo, useState } from 'react'
 
 import s from './FileItem.module.scss'
+import { useDeleteFileMutation } from '@/app/shared/api/files/filesApiHooks'
+import cyrillicToTranslit from 'cyrillic-to-translit-js'
 
 interface IFileItemProps extends INewsFiles {
     className?: string
@@ -19,12 +19,11 @@ interface IFileItemProps extends INewsFiles {
 
 export const FileItem: FC<IFileItemProps> = memo((props) => {
     const { className, name, newsId, extension } = props
+    console.log(newsId)
     const [openModal, setOpenModal] = useState(false)
-    const dispatch = useAppDispatch()
+    const { mutate: deleteFile } = useDeleteFileMutation({ newsId })
 
-    const deleteFile = () => {
-        dispatch(NewsServices.deleteFile({ fileName: name, newsId }))
-    }
+    const translatedName = cyrillicToTranslit().reverse(name)
 
     return (
         <>
@@ -35,7 +34,7 @@ export const FileItem: FC<IFileItemProps> = memo((props) => {
                     loading='lazy'
                     src={selectFileExtensionIcon(extension)}
                 />
-                <p>{sliceExtensionInString(name)}</p>
+                <p>{sliceExtensionInString(translatedName)}</p>
                 <Button size='small'>
                     <a
                         href={createHrefToFile(name)}
@@ -61,7 +60,7 @@ export const FileItem: FC<IFileItemProps> = memo((props) => {
                 </Button>
             </li>
             <AlertDialog
-                onClickAction={deleteFile}
+                onClickAction={() => deleteFile({ newsId, fileName: name })}
                 dialogTitle={`Удалить файл?`}
                 dialogContent={name}
                 open={openModal}

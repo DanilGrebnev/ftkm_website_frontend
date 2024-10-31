@@ -9,7 +9,7 @@ import { INewsSchema } from './schema/newsSchema'
 const initialState = {
     news: [],
     getNewsError: false,
-    loading: true,
+    loading: false,
     loadingFile: false,
     fetchNews: false,
     imgLoading: false,

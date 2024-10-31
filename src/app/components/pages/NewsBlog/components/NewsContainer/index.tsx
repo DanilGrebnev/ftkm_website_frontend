@@ -11,12 +11,16 @@ export const NewsContainer = () => {
 
     return (
         <Grid className={clsx(s['news-blog'])}>
-            {data?.map((news) => (
-                <NewsCardItem
-                    key={news._id}
-                    {...news}
-                />
-            ))}
+            {!data ? (
+                <div></div>
+            ) : (
+                data?.map((news) => (
+                    <NewsCardItem
+                        key={news?._id}
+                        {...news}
+                    />
+                ))
+            )}
         </Grid>
     )
 }

@@ -10,6 +10,8 @@ import { useEffect, useRef } from 'react'
 import { VSTUIcon } from '../VSTU_icon'
 import { HeaderMenuItems } from './HeaderMenuItems'
 import s from './style.module.scss'
+import { BMenu } from '@UI/bmenu/BMenu'
+import VstuIcon from '@/assets/VSTU.webp'
 
 export const Header = () => {
     const ref = useRef<HTMLElement>(null)
@@ -35,10 +37,13 @@ export const Header = () => {
                         className={s.toolbar}
                         disableGutters
                     >
-                        <BurgerMenu className={s['burger-menu']} />
-
-                        <VSTUIcon className={s.vstuIcon} />
-
+                        {/*<BurgerMenu className={s['burger-menu']} />*/}
+                        <BMenu />
+                        <img
+                            alt='VSTU Icon'
+                            src={VstuIcon}
+                            className={s.vstuIcon}
+                        />
                         <HeaderMenuItems />
                     </Toolbar>
                 </Container>

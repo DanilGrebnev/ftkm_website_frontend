@@ -9,4 +9,5 @@ export interface IAlertDialog {
     dialogContent?: string
     button1Text?: ReactNode
     button2Text?: ReactNode
+    disable?: boolean
 }

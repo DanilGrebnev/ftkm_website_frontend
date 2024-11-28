@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 
 interface IEditBtn {
     id: string
+    link: string
 }
 
-export const EditBtn: React.FC<IEditBtn> = ({ id }) => {
+export const EditBtn: React.FC<IEditBtn> = ({ id, link }) => {
     return (
-        <Link to={`newsEditor/` + id}>
+        <Link to={link + id}>
             <EditToolTip />
         </Link>
     )

@@ -1,22 +1,17 @@
-import { useOpenModal } from '@hooks/useOpenModal'
 import { INewsItem } from '@interfaces/News'
-import { FC } from 'react'
-
+import { FC, useState } from 'react'
 import s from './NewsItem.module.scss'
-import { AlertDeleteDialog } from './components/AlertDeleteDialog'
 import { DateBlock } from './components/DateBlock'
-import { DeleteBtn } from './components/DeleteBtn'
 import { EditBtn } from './components/EditBtn'
 import { FileList } from './components/FileList/FileList'
 
-export const NewsItem: FC<INewsItem> = ({
-    _id,
-    createdDate,
-    title,
-    isDeleteLoading,
-    files,
-}) => {
-    const { open, toggleModal } = useOpenModal()
+import { DeleteBtn } from '@UI/DeleteBtn'
+import { useDeleteNewsMutation } from '@/app/shared/api/news/changeNewsQuery'
+import { AlertDialog } from '@UI/AlertDialog'
+
+export const NewsItem: FC<INewsItem> = ({ _id, createdDate, title, files }) => {
+    const [isOpenModal, setOpenModal] = useState<boolean>(false)
+    const { mutate, isPending } = useDeleteNewsMutation({})
 
     return (
         <div className={s.newsItem}>
@@ -25,20 +20,22 @@ export const NewsItem: FC<INewsItem> = ({
 
             {!!files.length && <FileList files={files} />}
             <span>
-                id нвости: <b>{_id}</b>
+                id новости: <b>{_id}</b>
             </span>
             <div className={s.btnGroup}>
-                <EditBtn id={_id} />
-                <DeleteBtn
-                    isLoading={isDeleteLoading}
-                    onClick={toggleModal}
-                />
-                <AlertDeleteDialog
+                <EditBtn
+                    link={'newsEditor/'}
                     id={_id}
-                    closeModal={toggleModal}
-                    open={open}
                 />
+                <DeleteBtn onClick={() => setOpenModal((p) => !p)} />
             </div>
+            <AlertDialog
+                dialogTitle='Удалить новость?'
+                open={isOpenModal}
+                disable={isPending}
+                onClickAction={() => mutate(_id)}
+                handleClose={() => !isPending && setOpenModal(false)}
+            />
         </div>
     )
 }

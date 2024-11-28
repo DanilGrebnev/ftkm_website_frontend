@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { clsx } from 'clsx'
 import { FC } from 'react'
 
 import { LineContainerProps } from '../../../interface/LineContainer'
@@ -11,7 +11,7 @@ export const LineContainer: FC<LineContainerProps> = ({
 }): JSX.Element => {
     return (
         <section
-            className={cn(className, s.LineContainer)}
+            className={clsx(className, s.LineContainer)}
             style={style}
         >
             <span className={s.lineTop}></span>

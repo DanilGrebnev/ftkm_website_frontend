@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { clsx } from 'clsx'
 import React from 'react'
 
 import { IButton } from '../interface'
@@ -20,7 +20,7 @@ export const Button: React.FC<IButton> = ({
         <button
             style={style}
             onClick={onClick}
-            className={cn(s.button, {
+            className={clsx(s.button, {
                 [s.active]: +buttonIndex === +currentTab,
             })}
             value={buttonIndex}

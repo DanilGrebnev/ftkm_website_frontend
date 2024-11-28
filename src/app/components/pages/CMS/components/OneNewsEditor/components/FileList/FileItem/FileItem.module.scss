@@ -2,7 +2,6 @@
 
 .FileItem {
     display: flex;
-    flex-wrap: wrap;
 
     gap: adaptiveSize(20, 10);
     align-items: center;
@@ -11,9 +10,16 @@
 .icon {
     height: 30px;
 }
-
+.fileName {
+    width: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .download-button,
 .delete-button {
+    width: max-content;
     outline: none;
     border: none;
     background: transparent;
@@ -23,6 +29,7 @@
     justify-content: center;
     gap: adaptiveSize(10, 5);
     cursor: pointer;
+
 }
 
 .download-button {

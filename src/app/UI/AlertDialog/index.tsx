@@ -21,6 +21,7 @@ export const AlertDialog: React.FC<IAlertDialog> = ({
     onClickAction,
     button1Text,
     button2Text,
+    disable,
 }) => {
     return (
         <Dialog
@@ -42,6 +43,7 @@ export const AlertDialog: React.FC<IAlertDialog> = ({
                 <Button onClick={handleClose}>{button1Text || 'Отмена'}</Button>
                 <Button
                     color='error'
+                    disabled={disable}
                     onClick={() => {
                         onClickAction()
                         handleClose()

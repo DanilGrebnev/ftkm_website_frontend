@@ -1,5 +1,11 @@
 @import '@variables';
 
+.container {
+  display:flex;
+  padding: 10px;
+  align-items: center;
+}
+
 .Box2 {
   flex-grow: 1;
   justify-content: center;
@@ -24,6 +30,11 @@
 
 .vstuIcon {
     max-width: 150px;
+  @media screen and (max-width: 900px) {
+    & {
+      margin: auto;
+    }
+  }
 }
 
 .box {
@@ -34,10 +45,5 @@
   display: none;
 }
 
-@media screen and (max-width: 900px) {
-  .vstuIcon {
-    border: 1px solid red !important;
-    justify-self: center !important;
-  }
-}
+
 

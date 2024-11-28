@@ -15,7 +15,7 @@ export const HeaderMenuItems = () => {
             <Box
                 className={clsx('Box2', style.Box2)}
                 sx={{
-                    display: { sm: 'none', lg: 'flex' },
+                    display: { xs: 'none', md: 'flex' },
                 }}
             >
                 <nav>

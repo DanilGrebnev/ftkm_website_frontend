@@ -9,4 +9,7 @@ export const navigateRoutes = {
         toNews: (newsId: string) => newsId,
         toCreateNews: 'newsEditor',
     },
+    employees: {
+        toEmployees: '/cms/employees',
+    },
 }

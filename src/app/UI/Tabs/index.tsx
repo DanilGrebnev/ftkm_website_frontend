@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { clsx } from 'clsx'
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -23,8 +23,8 @@ export const Tabs: React.FC<ITabs> = ({ children, buttonStyle }) => {
     }
 
     return (
-        <section className={cn('Tabs', s.Tabs)}>
-            <div className={cn('Tabs_Button', s.TabsButton)}>
+        <section className={clsx('Tabs', s.Tabs)}>
+            <div className={clsx('Tabs_Button', s.TabsButton)}>
                 {childrenArray.map((el, i) => {
                     const element = el as unknown as prop
                     /**
@@ -46,7 +46,7 @@ export const Tabs: React.FC<ITabs> = ({ children, buttonStyle }) => {
                 })}
             </div>
 
-            <div className={cn('Tabs_Item', s.TabsItem)}>
+            <div className={clsx('Tabs_Item', s.TabsItem)}>
                 {childrenArray.map((tab, i) => i === currentTab && tab)}
             </div>
         </section>

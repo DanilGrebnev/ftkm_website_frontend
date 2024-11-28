@@ -1,5 +1,5 @@
 import { List } from '@components/Ordinary/List'
-import cn from 'classnames'
+import { clsx } from 'clsx'
 import { data } from 'src/app/data/Kidalov.employee'
 
 import { Description } from './components/Description'
@@ -8,7 +8,7 @@ import s from './s.module.scss'
 
 export const Employee = () => {
     return (
-        <section className={cn('Employee', s.employee)}>
+        <section className={clsx('Employee', s.employee)}>
             <Header />
 
             {data.map((props, i) => {

@@ -4,10 +4,10 @@ import { Route, Routes } from 'react-router-dom'
 
 import './App.scss'
 import { ErrorBoundary } from './app/Providers'
-import { ContactsPageLazy } from './app/components/pages/Contacts/ContactsPageLazy'
-import { MoreInfoPageLazy } from './app/components/pages/MoreInfo/MoreInfoPageLazy'
-import { NewsBlogLazy } from './app/components/pages/NewsBlog/NewsBlogLazy'
-import { OneNewsLazy } from './app/components/pages/OneNews/OneNewsLazy'
+import { ContactsPageLazy } from '@components/pages/Contacts/ContactsPageLazy'
+import { MoreInfoPageLazy } from '@components/pages/MoreInfo/MoreInfoPageLazy'
+import { NewsBlogLazy } from '@components/pages/NewsBlog/NewsBlogLazy'
+import { OneNewsLazy } from '@components/pages/OneNews/OneNewsLazy'
 import { LazyNotFound } from '@UI/NotFound/NotFoundLazy'
 
 // TODO: Роутинг Сайта

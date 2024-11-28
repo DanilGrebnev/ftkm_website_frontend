@@ -5,13 +5,14 @@ import { sliceExtensionInString } from '@/app/lib/sliceExtensionString'
 import { AlertDialog } from '@UI/AlertDialog'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
-import { Button } from '@mui/material'
+import { IconButton } from '@mui/material'
 import clsx from 'clsx'
 import { type FC, memo, useState } from 'react'
 
 import s from './FileItem.module.scss'
 import { useDeleteFileMutation } from '@/app/shared/api/files/filesApiHooks'
 import cyrillicToTranslit from 'cyrillic-to-translit-js'
+import { downloadFileByURL } from '@/app/shared/utils/downloadFileByURL'
 
 interface IFileItemProps extends INewsFiles {
     className?: string
@@ -34,8 +35,15 @@ export const FileItem: FC<IFileItemProps> = memo((props) => {
                     loading='lazy'
                     src={selectFileExtensionIcon(extension)}
                 />
-                <p>{sliceExtensionInString(translatedName)}</p>
-                <Button size='small'>
+                <p className={s.fileName}>
+                    {sliceExtensionInString(translatedName)}
+                </p>
+                <IconButton
+                    size='small'
+                    onClick={() =>
+                        downloadFileByURL(createHrefToFile(name), name)
+                    }
+                >
                     <a
                         href={createHrefToFile(name)}
                         download={true}
@@ -43,21 +51,19 @@ export const FileItem: FC<IFileItemProps> = memo((props) => {
                         rel='noreferrer'
                         className={s['download-button']}
                     >
-                        Загрузить
                         <FileDownloadOutlinedIcon
                             sx={{ color: 'green' }}
                             fontSize='small'
                         />
                     </a>
-                </Button>
-                <Button
+                </IconButton>
+                <IconButton
                     onClick={() => setOpenModal(true)}
                     size='small'
                     className={s['delete-button']}
                 >
-                    удалить
-                    <DeleteOutlineOutlinedIcon fontSize='medium' />
-                </Button>
+                    <DeleteOutlineOutlinedIcon />
+                </IconButton>
             </li>
             <AlertDialog
                 onClickAction={() => deleteFile({ newsId, fileName: name })}

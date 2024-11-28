@@ -7,7 +7,6 @@ import {
     CareerOpportunities,
     DepartmentSpecialists,
     DescriptionProfession,
-    Footer,
     Graduates,
     Hero,
     NewsBlock,
@@ -18,7 +17,9 @@ import {
     TextAndVideo1,
     TextAndVideo2,
 } from './components'
+import { FooterLazy } from '@components/pages/Main/components/Footer/FooterLazy'
 import s from './style.module.scss'
+import { LazyComponentWrapper } from '@HOC/LazyComponentWrapper'
 
 export const Main = () => {
     const title =
@@ -44,7 +45,9 @@ export const Main = () => {
             <ScientificDirection />
             <NewsBlock />
             <Questions />
-            <Footer />
+            <LazyComponentWrapper>
+                <FooterLazy />
+            </LazyComponentWrapper>
         </section>
     )
 }

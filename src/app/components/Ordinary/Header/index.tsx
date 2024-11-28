@@ -1,20 +1,21 @@
-import { BurgerMenu } from '@UI/BurgerMenu'
-import { BurgerMenuItems } from '@UI/BurgerMenu/BurgerMenuItem'
-import { BurgerMenuModal } from '@UI/BurgerMenu/BurgerMenuModal'
 import { HeightCalcHelper } from '@lib/HeightHelper'
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
-import Toolbar from '@mui/material/Toolbar'
-import { useEffect, useRef } from 'react'
-
-import { VSTUIcon } from '../VSTU_icon'
+import { useEffect, useRef, useState } from 'react'
+import { BurgerMenuLazy } from '@UI/BurgerMenu/BurgerMenuLazy'
 import { HeaderMenuItems } from './HeaderMenuItems'
 import s from './style.module.scss'
-import { BMenu } from '@UI/bmenu/BMenu'
 import VstuIcon from '@/assets/VSTU.webp'
 
 export const Header = () => {
     const ref = useRef<HTMLElement>(null)
+    const [isViewBurgerMenu, setIsViewBurgerMenu] = useState(false)
+
+    useEffect(() => {
+        if (window.innerWidth <= 900) {
+            setIsViewBurgerMenu(true)
+        }
+    }, [])
 
     useEffect(() => {
         if (ref.current) {
@@ -32,25 +33,19 @@ export const Header = () => {
                 className={s.Header}
                 position='sticky'
             >
-                <Container maxWidth='xl'>
-                    <Toolbar
-                        className={s.toolbar}
-                        disableGutters
-                    >
-                        {/*<BurgerMenu className={s['burger-menu']} />*/}
-                        <BMenu />
-                        <img
-                            alt='VSTU Icon'
-                            src={VstuIcon}
-                            className={s.vstuIcon}
-                        />
-                        <HeaderMenuItems />
-                    </Toolbar>
+                <Container
+                    maxWidth='xl'
+                    className={s.container}
+                >
+                    {isViewBurgerMenu && <BurgerMenuLazy />}
+                    <img
+                        alt='VSTU Icon'
+                        src={VstuIcon}
+                        className={s.vstuIcon}
+                    />
+                    <HeaderMenuItems />
                 </Container>
             </AppBar>
-            <BurgerMenuModal>
-                <BurgerMenuItems />
-            </BurgerMenuModal>
         </header>
     )
 }

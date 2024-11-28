@@ -6,8 +6,7 @@ import { LazyAccordion } from './Accordion/LazyAccordion'
 import { ButtonArchive } from './ButtonArchive'
 import { LazyNewsList } from './NewsList/LazyNewsList'
 import s from './style.module.scss'
-import { globalVariables } from '@globalVariables'
-import { useGetLastNewsQuery } from '@/app/shared/api/news/newsApiHooks'
+import { useGetLastNewsQuery } from '@/app/shared/api/news/getNewsQuery'
 
 // TODO: Получние новостей на главной странице, useGetLastNewsQuery
 export const NewsBlock = () => {

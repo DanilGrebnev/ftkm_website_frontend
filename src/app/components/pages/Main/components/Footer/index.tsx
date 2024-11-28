@@ -8,7 +8,7 @@ interface IFooter {
     style?: React.CSSProperties
 }
 
-export const Footer: React.FC<IFooter> = ({ style }) => {
+const Footer: React.FC<IFooter> = ({ style }) => {
     return (
         <section
             style={style}
@@ -34,3 +34,5 @@ export const Footer: React.FC<IFooter> = ({ style }) => {
         </section>
     )
 }
+
+export default Footer

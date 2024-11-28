@@ -1,0 +1,25 @@
+.EmployeeEditContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.input {
+  max-width: 1000px;
+}
+
+.textarea {
+  max-width: 1000px;
+}
+
+
+.selectBtn {
+  width: max-content;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+button {
+  width: max-content;
+}

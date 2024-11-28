@@ -7,11 +7,15 @@ export const TitleInput = memo(
     forwardRef<HTMLInputElement, Props>((props, ref) => {
         return (
             <TextField
+                key={1}
                 label={'Заголовок *'}
                 ref={ref}
                 autoComplete='off'
                 {...props}
                 sx={{ maxWidth: '1000px' }}
+                // InputLabelProps={{
+                //     shrink: true,
+                // }}
             />
         )
     })

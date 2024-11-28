@@ -1,36 +1,79 @@
-import { useIsAuth } from '@hooks/useIsAuth'
 import { Button } from '@mui/material'
-import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { SubmitBtn } from './components/LoginButton'
-import { LoginInput } from './components/LoginInput'
-import { PasswordInput } from './components/PasswordInput'
 import s from './style.module.scss'
+import {
+    useLoginMutation,
+    useAuthStatusQuery,
+} from '@/app/shared/api/login/loginApiHooks'
+import LoginIcon from '@mui/icons-material/Login'
+import LoadingBtn from '@mui/lab/LoadingButton'
+import { createPortal } from 'react-dom'
+import { ModalComponent } from '@UI/ModalComponent'
+import Input from './components/Input'
 
 const Login = () => {
-    useIsAuth()
+    const navigate = useNavigate()
+    useAuthStatusQuery({ onSuccess: () => navigate('/cms') })
 
-    const loginRef = useRef<HTMLInputElement>(null)
-    const passRef = useRef<HTMLInputElement>(null)
+    const { mutate: authFn, isError, isPending } = useLoginMutation()
+    const modal = document.getElementById('modal_block') as HTMLDivElement
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const form = new FormData(e.target as HTMLFormElement)
+        authFn({
+            login: form.get('login') as string,
+            password: form.get('password') as string,
+        })
+    }
 
     return (
         <div className={s.LoginContainer}>
-            <div className={s.InputContainer}>
+            <form
+                className={s.InputContainer}
+                onSubmit={handleSubmit}
+            >
                 <h1>Система администрирования контента</h1>
-
-                <LoginInput ref={loginRef} />
-
-                <PasswordInput ref={passRef} />
-
+                <Input
+                    label='Логин'
+                    name='login'
+                    required={true}
+                    inputProps={{
+                        minLength: 3,
+                    }}
+                />
+                <Input
+                    name='password'
+                    label='Пароль'
+                    type='password'
+                    required={true}
+                    inputProps={{
+                        minLength: 3,
+                    }}
+                />
                 <div className={s.BtnGroup}>
-                    <SubmitBtn
-                        loginRef={loginRef}
-                        passRef={passRef}
-                    />
+                    <LoadingBtn
+                        type={'submit'}
+                        loading={isPending}
+                        loadingPosition='end'
+                        endIcon={<LoginIcon />}
+                    >
+                        Войти
+                    </LoadingBtn>
+                    {modal &&
+                        createPortal(
+                            <ModalComponent
+                                text='Ошибка авторизации. Неправильный логин или пароль'
+                                siverity='error'
+                                isOpen={isError}
+                            />,
+                            modal
+                        )}
                     <Link to='/'>
                         <Button
-                            variant='outlined'
+                            variant='text'
                             className={s.btn}
                         >
                             На главную
@@ -38,7 +81,7 @@ const Login = () => {
                     </Link>
                 </div>
                 <div id='modal_block'></div>
-            </div>
+            </form>
         </div>
     )
 }

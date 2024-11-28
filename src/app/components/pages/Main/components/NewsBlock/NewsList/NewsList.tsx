@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { m } from 'framer-motion'
 import { NewsItem } from './NewsItem'
-import { useGetLastNewsQuery } from '@/app/shared/api/news/newsApiHooks'
+import { useGetLastNewsQuery } from '@/app/shared/api/news/getNewsQuery'
 import { INewsItem } from '@interfaces/News'
 
 interface INewsList {

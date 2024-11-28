@@ -10,6 +10,9 @@ export const DeleteBtn: React.FC<IDeleteBtn> = ({ onClick, isLoading }) => {
     return isLoading ? (
         <LoadingCircle circularSize={20} />
     ) : (
-        <DeleteToolTip onClick={onClick} />
+        <DeleteToolTip
+            isLoading
+            onClick={onClick}
+        />
     )
 }

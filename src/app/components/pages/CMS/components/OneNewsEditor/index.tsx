@@ -1,7 +1,4 @@
-import { LoadingCircle } from '@/app/UI/LoadingCircle'
 import { AlertModal } from '@UI/AlertModal'
-import { useGetNewsStore } from '@hooks/useGetNewsStore'
-import { returnAlertType } from '@lib/returnAlertType'
 import { ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -10,19 +7,17 @@ import { FileList } from './components/FileList/FileList'
 import { TitleInput } from './components/TitleInput'
 import { VideoLinkInput } from './components/VideoLinkInput/VideoLink'
 import s from './style.module.scss'
-import {
-    useGetOneNewsQuery,
-    useNewsMutation,
-} from '@/app/shared/api/news/newsApiHooks'
+import { useNewsMutation } from '@/app/shared/api/news/changeNewsQuery'
+import { useGetOneNewsQuery } from '@/app/shared/api/news/getNewsQuery'
 import { useUploadFileMutation } from '@/app/shared/api/files/filesApiHooks'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { INewsFields } from '@interfaces/News'
 import { globalVariables } from '@globalVariables'
 import LoadingBtn from '@mui/lab/LoadingButton'
 
 const OneNewsEditor = () => {
     const { _id } = useParams()
-    const { mutate: newsMutation } = useNewsMutation({ id: _id })
+    const { mutate: newsMutation, isSuccess } = useNewsMutation({ id: _id })
     const { mutate: fileMutation, isPending } = useUploadFileMutation({
         newsId: _id,
     })
@@ -33,8 +28,8 @@ const OneNewsEditor = () => {
     })
 
     const {
-        register,
         handleSubmit,
+        control,
         formState: { errors, isValid },
     } = useForm<Omit<INewsFields, 'files'>>({
         mode: 'all',
@@ -47,16 +42,8 @@ const OneNewsEditor = () => {
 
     const onSubmit = handleSubmit((data) => newsMutation(data))
 
-    const { showNewsResponseModal, newsResponseModalContent } =
-        useGetNewsStore()
-
-    const textType = returnAlertType(newsResponseModalContent)
-
-    // if (isFetching) {
-    //     return <LoadingCircle fullScreen={true} />
-    // }
-
     const onSubmitFile = async (e: ChangeEvent<HTMLInputElement>) => {
+        console.log('Submit')
         const CyrillicToTranslit = await import('cyrillic-to-translit-js')
         const { transform } = CyrillicToTranslit.default()
         if (!_id) return
@@ -70,42 +57,63 @@ const OneNewsEditor = () => {
 
     return (
         <div className={s.EditorContainer}>
-            <TitleInput
-                {...register('title', {
+            <Controller
+                control={control}
+                name={'title'}
+                rules={{
                     required: 'Поле не может быть пустым',
                     minLength: {
                         value: 5,
                         message: 'Не менее 5 символов',
                     },
-                })}
-                error={!!errors.title}
-                helperText={errors.title?.message}
+                }}
+                render={({ field }) => (
+                    <TitleInput
+                        {...field}
+                        error={!!errors.title}
+                        helperText={errors.title?.message}
+                    />
+                )}
             />
-            <BodyInput
-                {...register('body', {
+            <Controller
+                control={control}
+                name={'body'}
+                rules={{
                     required: 'Поле не может быть пустым',
                     minLength: {
                         value: 10,
                         message: 'Не менее 10 символов',
                     },
-                })}
-                error={!!errors.body}
-                helperText={errors.body?.message}
+                }}
+                render={({ field }) => (
+                    <BodyInput
+                        {...field}
+                        error={!!errors.body}
+                        helperText={errors.body?.message}
+                    />
+                )}
             />
             <FileList
                 fileList={data?.data?.files ?? []}
                 loading={[isPending, isLoading]}
             />
-            <VideoLinkInput
-                error={!!errors.video}
-                helperText={errors.video?.message}
-                {...register('video', {
+            <Controller
+                control={control}
+                name='video'
+                rules={{
                     pattern: {
                         value: /https?:\/\/youtu\.be.+/gm,
                         message: `Значение должно быть ссылкой на видео youtube
                                 например: https://youtu.be/fAFrqqQybwU?si=9OT2f9l96SnAAr2y`,
                     },
-                })}
+                }}
+                render={({ field }) => (
+                    <VideoLinkInput
+                        {...field}
+                        error={!!errors.video}
+                        helperText={errors.video?.message}
+                    />
+                )}
             />
             {_id && (
                 <input
@@ -124,9 +132,13 @@ const OneNewsEditor = () => {
             </LoadingBtn>
 
             <AlertModal
-                type={textType}
-                title={newsResponseModalContent}
-                showModal={showNewsResponseModal}
+                type={'success'}
+                title={
+                    _id
+                        ? 'Новость успешно изменена'
+                        : 'Новость успешно опубликована'
+                }
+                showModal={isSuccess}
             />
         </div>
     )

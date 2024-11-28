@@ -3,7 +3,6 @@ import { useSetDocumentTitle } from '@/app/hooks/useSetDocumentTitle'
 import { Container } from '@mui/material'
 
 import s from './NewsBlog.module.scss'
-import { ButtonContainer } from './components/ButtonContainer'
 import { NewsContainer } from './components/NewsContainer'
 
 const NewsBlog = () => {
@@ -16,7 +15,6 @@ const NewsBlog = () => {
             className={s.NewsContainer}
         >
             <NewsContainer />
-            <ButtonContainer />
         </Container>
     )
 }

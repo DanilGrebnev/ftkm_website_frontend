@@ -27,9 +27,6 @@ export const LoadingButton: React.FC<ILoadingButton> = ({
             onClick={onClick}
             loading={loading}
             sx={loading ? { pointerEvents: 'none' } : {}}
-            // endIcon={
-            //     loading && <span style={{ width: '20px', height: '20px' }} />
-            // }
             variant='text'
             disabled={disabled}
         >

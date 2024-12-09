@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { FC } from 'react'
 
-import { LineContainerProps } from '../../../interface/LineContainer'
+import { LineContainerProps } from '@interfaces/LineContainer'
 import s from './style.module.scss'
 
 export const LineContainer: FC<LineContainerProps> = ({

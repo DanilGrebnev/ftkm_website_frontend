@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { UseMutateFunction, UseMutationResult } from '@tanstack/react-query'
 
 export interface IAlertDialog {
     open: boolean

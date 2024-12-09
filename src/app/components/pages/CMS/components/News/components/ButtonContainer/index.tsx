@@ -6,8 +6,6 @@ import { useGetNewsQuery } from '@/app/shared/api/news/getNewsQuery'
 export const ButtonContainer = () => {
     const { fetchNextPage, isFetchingNextPage, hasNextPage } = useGetNewsQuery()
 
-
-    console.log('hasNextPage', hasNextPage)
     const text = isFetchingNextPage
         ? 'идёт загрузка'
         : !hasNextPage

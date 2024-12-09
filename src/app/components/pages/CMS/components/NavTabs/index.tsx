@@ -65,10 +65,11 @@ export default function NavTabs() {
                     '& .MuiTab-root': { minHeight: 48 },
                 }}
                 textColor={'inherit'}
-                variant={'fullWidth'}
+                variant={'scrollable'}
+                scrollButtons={'auto'}
                 value={value}
                 onChange={handleChange}
-                aria-label='nav tabs example'
+                aria-label='nav tabs'
                 role='navigation'
             >
                 <LinkTab
@@ -83,7 +84,7 @@ export default function NavTabs() {
                 />
                 <LinkTab
                     label='Поступление'
-                    href='/spam'
+                    href='admission'
                     icon={<SchoolIcon />}
                 />
             </Tabs>

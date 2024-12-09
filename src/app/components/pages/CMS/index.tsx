@@ -9,6 +9,7 @@ import { LazyOneNewsEditor } from './components/OneNewsEditor/LazyOneNewsEditor'
 import s from './style.module.scss'
 import './style.scss'
 import { EmployeesEditor } from '@components/pages/CMS/pages/EmployeesEditor'
+import { AdmissionEditor } from '@components/pages/CMS/pages/Admission'
 
 const OneNewsEditorWithAuth = (
     <ErrorBoundary>
@@ -53,6 +54,10 @@ const CMS = () => {
                 <Route
                     path='employees/editingEmployee/:_id'
                     element={<EmployeesEditor />}
+                />
+                <Route
+                    path='admission'
+                    element={<AdmissionEditor />}
                 />
             </Routes>
         </section>

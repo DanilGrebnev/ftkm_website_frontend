@@ -1,13 +1,10 @@
-import {
-    useInfiniteQuery,
-    useQuery,
-    useQueryClient,
-} from '@tanstack/react-query'
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { employeesApiKeys } from '@/app/shared/api/employees/employeesApiKeys'
 import { ninja } from '@/app/shared/api/api-instance/fetchInstance'
 import { IEmployeesFields } from '@interfaces/Employees'
 import { ErrorResponse } from '@/app/shared/types/Response'
 import { globalVariables } from '@globalVariables'
+import { log } from '@craco/craco/dist/lib/logger'
 
 // Параметры для запроса
 interface IParams {
@@ -50,6 +47,7 @@ export const useGetEmployeesQuery = () => {
                 })
                 .send<IEmployeesFields[], ErrorResponse>(),
         getNextPageParam: (lastPage, _, lastPageParam) => {
+            console.log(lastPageParam)
             const lastEmployeeAmount = lastPage.data?.length
 
             if (lastEmployeeAmount < globalVariables.limit) return undefined

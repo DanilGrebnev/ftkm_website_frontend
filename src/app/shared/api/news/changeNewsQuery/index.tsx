@@ -5,6 +5,7 @@ import { newsApiKeys } from '@/app/shared/api/news/newsApiKeys'
 import { useNavigate } from 'react-router-dom'
 import { INewsFields, INewsItem } from '@interfaces/News'
 import { navigateRoutes } from '@/app/shared/navigateRoutes'
+import { useRedirectAfterContentUpdate } from '@hooks/useRedirectAfterContentUpdate'
 
 interface DeleteNewsOptions {
     callBack?: () => void
@@ -38,7 +39,7 @@ export const useDeleteNewsMutation = ({ callBack }: DeleteNewsOptions) => {
 
 export const useNewsMutation = (options?: GetOneNewsOptions) => {
     const queryClient = useQueryClient()
-    const navigate = useNavigate()
+    const { toNavigate } = useRedirectAfterContentUpdate()
 
     return useMutation({
         mutationFn: (newsFields: Omit<INewsFields, 'files'>) => {
@@ -56,7 +57,7 @@ export const useNewsMutation = (options?: GetOneNewsOptions) => {
         },
         onSuccess: async () => {
             if (!options?.id) {
-                setTimeout(() => navigate(navigateRoutes.CMS.toCMS), 2000)
+                toNavigate(navigateRoutes.CMS.toCMS)
             } else {
                 await queryClient.invalidateQueries({
                     queryKey: [newsApiKeys.getOneNews(options?.id)],

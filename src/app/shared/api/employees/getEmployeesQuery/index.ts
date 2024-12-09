@@ -4,7 +4,6 @@ import { ninja } from '@/app/shared/api/api-instance/fetchInstance'
 import { IEmployeesFields } from '@interfaces/Employees'
 import { ErrorResponse } from '@/app/shared/types/Response'
 import { globalVariables } from '@globalVariables'
-import { log } from '@craco/craco/dist/lib/logger'
 
 // Параметры для запроса
 interface IParams {

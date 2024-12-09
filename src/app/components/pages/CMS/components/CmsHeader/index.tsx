@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import NavTabs from '@components/pages/CMS/components/NavTabs'
-import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
 import {
     StyledInputBase,
@@ -17,10 +16,7 @@ import {
 export default function CmsHeader() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar
-                position='static'
-                sx={{}}
-            >
+            <AppBar position='static'>
                 <Toolbar>
                     <Typography
                         variant='h6'
@@ -36,18 +32,6 @@ export default function CmsHeader() {
                     >
                         CMS
                     </Typography>
-                    {/*<Button*/}
-                    {/*    sx={{*/}
-                    {/*        color: 'white',*/}
-                    {/*        minWidth: 'auto',*/}
-                    {/*        whiteSpace: 'nowrap',*/}
-                    {/*        m: '0 15px',*/}
-                    {/*        position: 'relative',*/}
-                    {/*        flexShrink: 0,*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    */}
-                    {/*</Button>*/}
                     <MainRedirectBtn>
                         <Link
                             style={{ color: 'white' }}

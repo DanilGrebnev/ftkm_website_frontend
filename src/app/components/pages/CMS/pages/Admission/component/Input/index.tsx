@@ -4,12 +4,8 @@ import {
     InputWrapper,
     ToggleInput,
 } from '@components/pages/CMS/pages/Admission/component/CustomMuiComponent'
-import {
-    useController,
-    UseControllerProps,
-    useFormContext,
-} from 'react-hook-form'
-import { IForm, TFields } from '../../type'
+import { useFormContext } from 'react-hook-form'
+import { TFields } from '../../type'
 import { InputBtn } from '@components/pages/CMS/pages/Admission/component/InputBtn'
 
 interface InputProps {

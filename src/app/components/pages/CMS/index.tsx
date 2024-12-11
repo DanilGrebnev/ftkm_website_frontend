@@ -1,15 +1,15 @@
 import { ErrorBoundary } from '@/app/Providers'
 import { WithAuth } from '@HOC/WithAuth'
 import { Route, Routes } from 'react-router-dom'
-import CmsHeader from 'src/app/components/pages/CMS/components/CmsHeader'
+import { CmsHeader } from './components/CmsHeader'
 import { Employees } from './pages/Employees'
 
 import { News } from './components/News'
 import { LazyOneNewsEditor } from './components/OneNewsEditor/LazyOneNewsEditor'
 import s from './style.module.scss'
 import './style.scss'
-import { EmployeesEditor } from '@components/pages/CMS/pages/EmployeesEditor'
-import { AdmissionEditor } from '@components/pages/CMS/pages/Admission'
+import { EmployeesEditor } from './pages/EmployeesEditor'
+import { AdmissionEditor } from './pages/Admission'
 
 const OneNewsEditorWithAuth = (
     <ErrorBoundary>

@@ -25,21 +25,23 @@ export const EmployeesItem: FC<EmployeesItemProps> = (props) => {
     return (
         <div className={s.employeesItem}>
             <Row
-                icon={<PersonIcon color={'info'} />}
+                icon={<PersonIcon color='info' />}
                 text={`Имя сотрудника: ${name}`}
             />
             <Row
-                icon={<WorkIcon color={'info'} />}
+                icon={<WorkIcon color='info' />}
                 text={`Должность сотрудника: ${description}`}
             />
-            <Row
-                icon={<LinkIcon color={'info'} />}
-                link={link}
-                text={link}
-            />
+            {link && (
+                <Row
+                    icon={<LinkIcon color='info' />}
+                    link={link}
+                    text={link}
+                />
+            )}
             <div className={s.btnGroup}>
                 <EditBtn
-                    link={'editingEmployee/'}
+                    link='editingEmployee/'
                     id={_id}
                 />
                 <DeleteBtn onClick={() => setOpenModal(true)} />

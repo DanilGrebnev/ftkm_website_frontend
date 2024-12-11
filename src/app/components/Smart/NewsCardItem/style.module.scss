@@ -45,7 +45,9 @@ $pb: 20px;
     text-align: center;
     text-transform: uppercase;
     max-height: 120px;
-    overflow-y: hidden;
+    white-space: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .date,

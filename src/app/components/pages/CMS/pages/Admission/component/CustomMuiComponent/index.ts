@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material'
 
 export const InputWrapper = styled('div')(({ theme }) => ({
     marginTop: theme.spacing(3),
-    width: '200px',
+    width: 'max-content',
     position: 'relative',
     border: `1px solid ${alpha(theme.palette.primary.dark, 0.25)}`,
     borderRadius: theme.shape.borderRadius,

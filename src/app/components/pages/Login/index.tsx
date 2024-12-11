@@ -9,16 +9,14 @@ import {
 } from '@/app/shared/api/login/loginApiHooks'
 import LoginIcon from '@mui/icons-material/Login'
 import LoadingBtn from '@mui/lab/LoadingButton'
-import { createPortal } from 'react-dom'
-import { ModalComponent } from '@UI/ModalComponent'
 import Input from './components/Input'
+import { AlertModal } from '@UI/AlertModal'
 
 const Login = () => {
     const navigate = useNavigate()
     useAuthStatusQuery({ onSuccess: () => navigate('/cms') })
 
     const { mutate: authFn, isError, isPending } = useLoginMutation()
-    const modal = document.getElementById('modal_block') as HTMLDivElement
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -31,59 +29,58 @@ const Login = () => {
 
     return (
         <div className={s.LoginContainer}>
-            <form
-                className={s.InputContainer}
-                onSubmit={handleSubmit}
-            >
-                <h1>Система администрирования контента</h1>
-                <Input
-                    label='Логин'
-                    name='login'
-                    required={true}
-                    inputProps={{
-                        minLength: 3,
-                    }}
-                />
-                <Input
-                    name='password'
-                    label='Пароль'
-                    type='password'
-                    required={true}
-                    inputProps={{
-                        minLength: 3,
-                    }}
-                />
-                <div className={s.BtnGroup}>
-                    <LoadingBtn
-                        type={'submit'}
-                        loading={isPending}
-                        loadingPosition='end'
-                        endIcon={<LoginIcon />}
-                    >
-                        Войти
-                    </LoadingBtn>
-                    {modal &&
-                        createPortal(
-                            <ModalComponent
-                                text='Ошибка авторизации. Неправильный логин или пароль'
-                                siverity='error'
-                                isOpen={isError}
-                            />,
-                            modal
-                        )}
-                    <Link to='/'>
-                        <Button
-                            variant='text'
-                            className={s.btn}
+            <div>
+                <form
+                    className={s.InputContainer}
+                    onSubmit={handleSubmit}
+                >
+                    <h1>Система администрирования контента</h1>
+                    <Input
+                        className={s.input}
+                        label='Логин'
+                        name='login'
+                        required={true}
+                        inputProps={{
+                            minLength: 3,
+                        }}
+                    />
+                    <Input
+                        className={s.input}
+                        name='password'
+                        label='Пароль'
+                        type='password'
+                        required={true}
+                        inputProps={{
+                            minLength: 3,
+                        }}
+                    />
+                    <div className={s.BtnGroup}>
+                        <LoadingBtn
+                            type={'submit'}
+                            loading={isPending}
+                            loadingPosition='end'
+                            endIcon={<LoginIcon />}
                         >
-                            На главную
-                        </Button>
-                    </Link>
-                </div>
-                <div id='modal_block'></div>
-            </form>
+                            Войти
+                        </LoadingBtn>
+                        <Link to='/'>
+                            <Button
+                                variant='text'
+                                className={s.btn}
+                            >
+                                На главную
+                            </Button>
+                        </Link>
+                    </div>
+                    <AlertModal
+                        showModal={isError}
+                        closeTimeout={5000}
+                        type='error'
+                        title='Ошибка авторизации. Неправильный логин или пароль'
+                    />
+                </form>
+            </div>
         </div>
     )
 }
-
 export default Login

@@ -15,7 +15,7 @@ interface GetOneNewsOptions {
     enabled?: boolean
 }
 
-export const useDeleteNewsMutation = ({ callBack }: DeleteNewsOptions) => {
+export const useDeleteNewsMutation = (options?: DeleteNewsOptions) => {
     const queryClient = useQueryClient()
 
     return useMutation({
@@ -29,9 +29,7 @@ export const useDeleteNewsMutation = ({ callBack }: DeleteNewsOptions) => {
             await queryClient.invalidateQueries({
                 queryKey: [newsApiKeys.getNews],
             })
-            if (callBack) {
-                callBack()
-            }
+            options?.callBack?.()
         },
     })
 }

@@ -11,7 +11,7 @@ import { AlertDialog } from '@UI/AlertDialog'
 
 export const NewsItem: FC<INewsItem> = ({ _id, createdDate, title, files }) => {
     const [isOpenModal, setOpenModal] = useState<boolean>(false)
-    const { mutate, isPending } = useDeleteNewsMutation({})
+    const { mutate, isPending } = useDeleteNewsMutation()
 
     return (
         <div className={s.newsItem}>

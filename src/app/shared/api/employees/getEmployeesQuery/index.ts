@@ -5,7 +5,6 @@ import { IEmployeesFields } from '@interfaces/Employees'
 import { ErrorResponse } from '@/app/shared/types/Response'
 import { globalVariables } from '@globalVariables'
 
-// Параметры для запроса
 interface IParams {
     limit: number
     skip: number
@@ -30,8 +29,8 @@ interface IPage {
 }
 
 interface IGoodResponse {
-    pageParams: IParams[] // Параметры для каждой страницы
-    pages: IPage[] // Массив данных по страницам
+    pageParams: IParams[]
+    pages: IPage[]
 }
 
 export const useGetEmployeesQuery = () => {

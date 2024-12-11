@@ -2,6 +2,8 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { ninja } from '@/app/shared/api/api-instance/fetchInstance'
 import { redirectToCmsPage } from '@lib/redirectToCmsPage'
 import { globalVariables } from '@globalVariables'
+import { useNavigate } from 'react-router-dom'
+import { navigateRoutes } from '@/app/shared/navigateRoutes'
 
 interface DataRes {
     token: string
@@ -41,6 +43,7 @@ export const useAuthStatusQuery = (options?: UseAuthStatusQuery) => {
 }
 
 export const useLoginMutation = () => {
+    const navigate = useNavigate()
     return useMutation({
         mutationFn: ({
             login,
@@ -57,6 +60,7 @@ export const useLoginMutation = () => {
         onSuccess: ({ data }) => {
             if (!data?.token) return
             localStorage.setItem('token', data.token)
+            // navigate(navigateRoutes.CMS.toCMS)
             redirectToCmsPage()
         },
     })

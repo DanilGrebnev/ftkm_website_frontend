@@ -30,14 +30,14 @@ export const EmployeesEditor = () => {
         <div className={s.EmployeeEditContainer}>
             <Controller
                 control={control}
-                name={'name'}
+                name='name'
                 rules={{
                     required: 'Поле не может быть пустым',
                 }}
                 render={({ field }) => (
                     <EmployeeInput
                         {...field}
-                        label={'Имя сотрудника'}
+                        label='Имя сотрудника'
                         error={!!errors.name}
                         helperText={errors.name?.message}
                     />
@@ -45,14 +45,14 @@ export const EmployeesEditor = () => {
             />
             <Controller
                 control={control}
-                name={'description'}
+                name='description'
                 rules={{
                     required: 'Поле не может быть пустым',
                 }}
                 render={({ field }) => (
                     <EmployeeInput
                         {...field}
-                        label={'Должность'}
+                        label='Должность'
                         error={!!errors.description}
                         helperText={errors.description?.message}
                     />
@@ -60,14 +60,11 @@ export const EmployeesEditor = () => {
             />
             <Controller
                 control={control}
-                name={'link'}
-                rules={{
-                    required: 'Поле не может быть пустым',
-                }}
+                name='link'
                 render={({ field }) => (
                     <EmployeeInput
                         {...field}
-                        label={'Ссылка'}
+                        label='Ссылка'
                         error={!!errors.link}
                         helperText={errors.link?.message}
                     />
@@ -80,7 +77,7 @@ export const EmployeesEditor = () => {
                 {_id ? 'Изменить' : 'Добавить'}
             </LoadingBtn>
             <AlertModal
-                type={'success'}
+                type='success'
                 title={
                     _id
                         ? 'Сотрудник успешно изменен'

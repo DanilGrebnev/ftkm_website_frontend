@@ -3,17 +3,11 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import SearchIcon from '@mui/icons-material/Search'
 import NavTabs from '@components/pages/CMS/components/NavTabs'
 import { Link } from 'react-router-dom'
-import {
-    StyledInputBase,
-    Search,
-    SearchIconWrapper,
-    MainRedirectBtn,
-} from './CustomMuiComponent'
+import { MainRedirectBtn } from './CustomMuiComponent'
 
-export default function CmsHeader() {
+export function CmsHeader() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position='static'>
@@ -41,15 +35,6 @@ export default function CmsHeader() {
                         </Link>
                     </MainRedirectBtn>
                     <NavTabs />
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder='Поиск…'
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
                 </Toolbar>
             </AppBar>
         </Box>

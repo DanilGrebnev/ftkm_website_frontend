@@ -7,21 +7,41 @@ import {
 import { useFormContext } from 'react-hook-form'
 import { TFields } from '../../type'
 import { InputBtn } from '@components/pages/CMS/pages/Admission/component/InputBtn'
+import { useEffect, useState } from 'react'
+import { useOutsideClick } from '@hooks/useOutsideClick'
 
 interface InputProps {
     name: TFields
     inputLabel: string
-    isEditing: boolean
-    handleEdit: (fieldName: TFields) => void
+    handleFocus: (fieldName: TFields) => void
+    isSuccess: boolean
 }
 
-export const Input = (p: InputProps) => {
-    const { name, inputLabel, isEditing, handleEdit } = p
+export const Input = (props: InputProps) => {
+    const { name, isSuccess, inputLabel, handleFocus } = props
+    const [editMode, setEditMode] = useState(false)
     const { register } = useFormContext()
     const { ref, ...registerMethods } = register(name)
 
+    const inputWrapperRef = useOutsideClick<HTMLDivElement>(() => {
+        setEditMode(false)
+    }, editMode)
+
+    const toggleIsEditMode = (state?: boolean) => {
+        setEditMode((p) => !p)
+    }
+
+    useEffect(() => {
+        if (isSuccess) {
+            setEditMode(false)
+        }
+    }, [isSuccess])
+
     return (
-        <InputWrapper sx={{ padding: 0.3 }}>
+        <InputWrapper
+            ref={inputWrapperRef}
+            sx={{ padding: 0.3 }}
+        >
             <Typography
                 className={s['input-label']}
                 variant='caption'
@@ -33,11 +53,14 @@ export const Input = (p: InputProps) => {
             <ToggleInput
                 {...registerMethods}
                 inputRef={ref}
-                readOnly={!isEditing}
+                readOnly={!editMode}
             />
             <InputBtn
-                isEditing={isEditing}
-                handleEdit={() => handleEdit(name)}
+                isEditing={editMode}
+                handleEdit={() => {
+                    handleFocus(name)
+                    toggleIsEditMode()
+                }}
             />
         </InputWrapper>
     )

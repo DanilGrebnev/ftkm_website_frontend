@@ -11,7 +11,7 @@ export const Row = (props: IRowProps) => {
     const { text, icon, link } = props
     return (
         <Stack
-            direction={'row'}
+            direction='row'
             spacing={1}
         >
             {icon}

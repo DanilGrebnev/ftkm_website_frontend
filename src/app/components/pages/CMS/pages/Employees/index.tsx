@@ -3,6 +3,8 @@ import { blue } from '@mui/material/colors'
 import { AddButton } from '@components/pages/CMS/components/AddButton'
 import { EmployeesContainer } from '@components/pages/CMS/pages/Employees/component/EmployeesContainer'
 
+import s from './employees.module.scss'
+
 export const Employees = () => {
     return (
         <Box
@@ -10,16 +12,7 @@ export const Employees = () => {
                 height: 'calc(100% - 64px)',
             }}
         >
-            <Box
-                sx={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '20px',
-                    padding: '10px',
-                    borderBottom: `1px solid ${blue[500]}`,
-                }}
-            >
+            <Box className={s['box-head']}>
                 <AddButton
                     link={'editingEmployee'}
                     infoTitle={'Добавить сотрудника'}

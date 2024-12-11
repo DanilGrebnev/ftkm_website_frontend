@@ -13,10 +13,7 @@ export const NewsContainer = () => {
     const newsSkip = globalVariables.limit * (page - 1)
     const { data } = usePaginateNewsQuery({ key: page, skip: newsSkip })
 
-    const handlePageChange = (
-        _event: React.ChangeEvent<unknown>,
-        value: number
-    ) => {
+    const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
         setPage(value)
     }
     return (

@@ -12,6 +12,10 @@
     }
 }
 
+.input {
+    margin-top: 20px
+}
+
 .InputContainer {
     display: flex;
     width: max-content;
@@ -19,7 +23,6 @@
     padding: 40px;
     border-radius: 1em;
     background: white;
-    gap: 20px;
 }
 
 .TextField {
@@ -31,6 +34,7 @@
     }
 }
 .BtnGroup {
+    margin-top: 20px;
     display: flex;
     gap: 20px;
 }

@@ -4,10 +4,11 @@ import clsx from 'clsx'
 import { ItemCircle } from './ItemCircle'
 import s from './style.module.scss'
 import { AnimationSlideBlock } from '@UI/AnimationSlideBlock'
+import { useGetAdmissionsQuery } from '@/app/shared/api/admission/admissionQuery'
 
 export const Admission = () => {
     const year = new Date().getFullYear()
-
+    const { data } = useGetAdmissionsQuery()
     return (
         <section
             id='Admission'
@@ -37,13 +38,13 @@ export const Admission = () => {
                     <AnimationSlideBlock delay={1}>
                         <ItemCircle
                             className={clsx(s.circle, s.circle1)}
-                            circleText='40'
+                            circleText={data?.amountOfBudgetPlaces ?? '40'}
                         />
                     </AnimationSlideBlock>
                     <AnimationSlideBlock delay={1}>
                         <ItemCircle
                             className={clsx(s.circle, s.circle2)}
-                            circleText='118'
+                            circleText={data?.passingScore ?? '118'}
                         />
                     </AnimationSlideBlock>
                     <AnimationSlideBlock delay={1}>

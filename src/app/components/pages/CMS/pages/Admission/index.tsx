@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box'
 import { Input } from './component/Input'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useChangeAdmissionMutation } from '@/app/shared/api/admission/admissionQuery'
+import {
+    useChangeAdmissionMutation,
+    useGetAdmissionsQuery,
+} from '@/app/shared/api/admission/admissionQuery'
 import { IForm, TFields } from './type'
 import { AlertModal } from '@UI/AlertModal'
 
@@ -9,11 +12,12 @@ import s from './admission.module.scss'
 
 export const AdmissionEditor = () => {
     const { mutate, isSuccess, isError } = useChangeAdmissionMutation()
-
+    const { data } = useGetAdmissionsQuery()
+    console.log('data:', data)
     const methods = useForm<IForm>({
         defaultValues: {
-            passingScore: '128',
-            amountOfBudgetPlaces: '2000',
+            passingScore: data?.passingScore ?? '',
+            amountOfBudgetPlaces: data?.amountOfBudgetPlaces ?? '',
         },
     })
 

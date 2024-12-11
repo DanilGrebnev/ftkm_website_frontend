@@ -49,9 +49,7 @@ export const useGetLastNewsQuery = () => {
     return useQuery({
         queryKey: [newsApiKeys.getLastNews],
         queryFn: ({ signal }) =>
-            ninja
-                .get('news', { queryParams: globalVariables, signal })
-                .send<INewsItem[], ErrorResponse>(),
+            ninja.get('news', { signal }).send<INewsItem[], ErrorResponse>(),
     })
 }
 

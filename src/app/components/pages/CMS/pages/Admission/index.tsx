@@ -13,12 +13,12 @@ import s from './admission.module.scss'
 export const AdmissionEditor = () => {
     const { mutate, isSuccess, isError } = useChangeAdmissionMutation()
     const { data } = useGetAdmissionsQuery()
-    console.log('data:', data)
     const methods = useForm<IForm>({
         defaultValues: {
-            passingScore: data?.passingScore ?? '',
-            amountOfBudgetPlaces: data?.amountOfBudgetPlaces ?? '',
+            passingScore: '',
+            amountOfBudgetPlaces: '',
         },
+        values: data,
     })
 
     const handleInputFocus = (fieldName: TFields) => {

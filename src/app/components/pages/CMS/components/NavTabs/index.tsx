@@ -5,20 +5,7 @@ import Tab from '@mui/material/Tab'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 import SchoolIcon from '@mui/icons-material/School'
 import GroupsIcon from '@mui/icons-material/Groups'
-import { Link } from 'react-router-dom'
-
-function samePageLinkNavigation(
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-) {
-    return !(
-        event.defaultPrevented ||
-        event.button !== 0 || // ignore everything but left-click
-        event.metaKey ||
-        event.ctrlKey ||
-        event.altKey ||
-        event.shiftKey
-    )
-}
+import { Link, useParams } from 'react-router-dom'
 
 interface LinkTabProps {
     label?: string
@@ -41,34 +28,25 @@ function LinkTab(props: LinkTabProps) {
 }
 
 export default function NavTabs() {
-    const [value, setValue] = React.useState(0)
+    const { '*': path } = useParams<{ '*': string }>()
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        if (
-            event.type !== 'click' ||
-            (event.type === 'click' &&
-                samePageLinkNavigation(
-                    event as React.MouseEvent<HTMLAnchorElement, MouseEvent>
-                ))
-        ) {
-            setValue(newValue)
-        }
+    const tabMap: { [key: string]: number } = {
+        '': 0,
+        employees: 1,
+        admission: 2,
     }
 
     return (
         <Box sx={{ width: '100%' }}>
             <Tabs
                 sx={{
-                    '& .MuiTabs-indicator': {
-                        backgroundColor: 'lightblue',
-                    },
+                    '& .MuiTabs-indicator': { backgroundColor: 'lightblue' },
                     '& .MuiTab-root': { minHeight: 48 },
                 }}
                 textColor={'inherit'}
                 variant={'scrollable'}
                 scrollButtons={'auto'}
-                value={value}
-                onChange={handleChange}
+                value={path && path in tabMap ? tabMap[path] : 0}
                 aria-label='nav tabs'
                 role='navigation'
             >

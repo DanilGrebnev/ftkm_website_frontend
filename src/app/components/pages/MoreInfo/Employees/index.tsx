@@ -7,7 +7,7 @@ import { useGetEmployeesQuery } from '@/app/shared/api/employees/getEmployeesQue
 import { AlertModal } from '@UI/AlertModal'
 
 export const Employees = () => {
-    const { data, isError } = useGetEmployeesQuery()
+    const { data, isError, isPending } = useGetEmployeesQuery()
     const employeesList = data?.employees ? data.employees : employeesData
 
     return (
@@ -23,7 +23,9 @@ export const Employees = () => {
                     />
                 ))}
                 <AlertModal
-                    showModal={isError || !data?.employees}
+                    showModal={
+                        (isError || !data?.employees.length) && !isPending
+                    }
                     title={'Не удалось загрузить всех сотрудников'}
                     type={'warning'}
                 />

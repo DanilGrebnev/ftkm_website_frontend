@@ -8,6 +8,7 @@ import {
     StyledInputBase,
 } from '@components/pages/CMS/components/CmsHeader/CustomMuiComponent'
 import SearchIcon from '@mui/icons-material/Search'
+// import { DateSelector } from '@UI/DateSelector'
 
 export const News = () => {
     return (
@@ -15,6 +16,7 @@ export const News = () => {
             <div className={s.header}>
                 <AddNewsBtn />
                 <ButtonContainer />
+                {/*<DateSelector />*/}
                 <Search className={s['search-input']}>
                     <SearchIconWrapper>
                         <SearchIcon />

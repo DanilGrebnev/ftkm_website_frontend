@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import NavTabs from '@components/pages/CMS/components/NavTabs'
 import { Link } from 'react-router-dom'
-import { MainRedirectBtn } from './CustomMuiComponent'
+import { MainRedirectBtn } from '@/app/UI/CustomMuiComponent/MainRedirectBtn'
 
 export function CmsHeader() {
     return (

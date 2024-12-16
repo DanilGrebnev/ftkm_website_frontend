@@ -1,11 +1,12 @@
-import * as React from 'react'
+import { JSX } from 'react'
+import { cmsNavigationRoutes } from '../../model/navigation'
 import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 import SchoolIcon from '@mui/icons-material/School'
 import GroupsIcon from '@mui/icons-material/Groups'
-import { Link, useParams } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 interface LinkTabProps {
     label?: string
@@ -17,23 +18,27 @@ interface LinkTabProps {
 function LinkTab(props: LinkTabProps) {
     return (
         <Tab
+            label={props.label}
             iconPosition='start'
+            to={props.href}
             icon={props.icon}
             component={Link}
-            to={props.href}
             aria-current={props.selected ? 'page' : undefined}
-            {...props}
         />
     )
 }
 
 export default function NavTabs() {
-    const { '*': path } = useParams<{ '*': string }>()
+    const { pathname } = useLocation()
 
-    const tabMap: { [key: string]: number } = {
-        '': 0,
-        employees: 1,
-        admission: 2,
+    const tabMap = {
+        cms: cmsNavigationRoutes.news,
+        employees: cmsNavigationRoutes.employees,
+        admission: cmsNavigationRoutes.admission,
+    }
+    const setCurrentTab = (path: string) => {
+        const entries = Object.entries(tabMap)
+        return entries.findIndex(([_, value]) => value.isEqual(path))
     }
 
     return (
@@ -46,23 +51,23 @@ export default function NavTabs() {
                 textColor={'inherit'}
                 variant={'scrollable'}
                 scrollButtons={'auto'}
-                value={path && path in tabMap ? tabMap[path] : 0}
+                value={setCurrentTab(pathname)}
                 aria-label='nav tabs'
                 role='navigation'
             >
                 <LinkTab
                     label='Новости'
-                    href=''
+                    href={cmsNavigationRoutes.news.path}
                     icon={<NewspaperIcon />}
                 />
                 <LinkTab
                     label='Сотрудники'
-                    href='employees'
+                    href={cmsNavigationRoutes.employees.path}
                     icon={<GroupsIcon />}
                 />
                 <LinkTab
                     label='Поступление'
-                    href='admission'
+                    href={cmsNavigationRoutes.admission.path}
                     icon={<SchoolIcon />}
                 />
             </Tabs>

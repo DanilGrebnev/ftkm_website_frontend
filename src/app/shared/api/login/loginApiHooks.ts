@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { ninja } from '@/app/shared/api/api-instance/fetchInstance'
-import { redirectToCmsPage } from '@lib/redirectToCmsPage'
+// import { redirectToCmsPage } from '@lib/redirectToCmsPage'
 import { globalVariables } from '@globalVariables'
 import { useNavigate } from 'react-router-dom'
-import { navigateRoutes } from '@/app/shared/navigateRoutes'
+import { navigateRoutes } from '../../navigateRoutes'
 
 interface DataRes {
     token: string
@@ -60,8 +60,8 @@ export const useLoginMutation = () => {
         onSuccess: ({ data }) => {
             if (!data?.token) return
             localStorage.setItem('token', data.token)
-            // navigate(navigateRoutes.CMS.toCMS)
-            redirectToCmsPage()
+            navigate(navigateRoutes.CMS.toCMS)
+            // redirectToCmsPage()
         },
     })
 }

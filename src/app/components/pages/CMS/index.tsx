@@ -10,6 +10,7 @@ import s from './style.module.scss'
 import './style.scss'
 import { EmployeesEditor } from './pages/EmployeesEditor'
 import { AdmissionEditor } from './pages/Admission'
+import { DateProvider } from '@components/pages/CMS/components/News/model/DateContext'
 
 const OneNewsEditorWithAuth = (
     <ErrorBoundary>
@@ -31,32 +32,35 @@ const CMS = () => {
                     path='/'
                     element={
                         <ErrorBoundary>
-                            <News />
+                            <DateProvider>
+                                <News />
+                            </DateProvider>
                         </ErrorBoundary>
                     }
                 />
+
                 <Route
-                    path='newsEditor'
+                    path='/newsEditor'
                     element={OneNewsEditorWithAuth}
                 />
                 <Route
-                    path='newsEditor/:_id'
+                    path='/newsEditor/:_id'
                     element={OneNewsEditorWithAuth}
                 />
                 <Route
-                    path='employees'
+                    path='/employees'
                     element={<Employees />}
                 />
                 <Route
-                    path='employees/editingEmployee'
+                    path='/employees/editingEmployee/:_id'
                     element={<EmployeesEditor />}
                 />
                 <Route
-                    path='employees/editingEmployee/:_id'
+                    path='/employees/editingEmployee'
                     element={<EmployeesEditor />}
                 />
                 <Route
-                    path='admission'
+                    path='/admission'
                     element={<AdmissionEditor />}
                 />
             </Routes>

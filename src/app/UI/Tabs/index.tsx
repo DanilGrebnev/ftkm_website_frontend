@@ -13,12 +13,11 @@ export { Tab } from './Tab'
 export const Tabs: React.FC<ITabs> = ({ children, buttonStyle }) => {
     const childrenArray = !Array.isArray(children) ? [children] : children
 
-    //Текущий индекс открытого таба
+    // Текущий индекс открытого таба
     const [currentTab, setCurrentTab] = useState(0)
 
     const onClick = (e: React.SyntheticEvent) => {
         const target = e.target as HTMLButtonElement
-
         setCurrentTab(+target.value)
     }
 

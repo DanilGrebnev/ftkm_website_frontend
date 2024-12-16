@@ -45,7 +45,6 @@ export const useGetEmployeesQuery = () => {
                 })
                 .send<IEmployeesFields[], ErrorResponse>(),
         getNextPageParam: (lastPage, _, lastPageParam) => {
-            console.log(lastPageParam)
             const lastEmployeeAmount = lastPage.data?.length
 
             if (lastEmployeeAmount < globalVariables.limit) return undefined

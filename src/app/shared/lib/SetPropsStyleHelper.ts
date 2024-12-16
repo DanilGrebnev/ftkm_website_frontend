@@ -1,4 +1,4 @@
-import { IGridPropsStyle } from '../interface/Grid'
+import { IGridPropsStyle } from '@interfaces/Grid'
 
 export const setPropsStyle = (props: IGridPropsStyle) => {
     const styleName: (keyof IGridPropsStyle)[] = [

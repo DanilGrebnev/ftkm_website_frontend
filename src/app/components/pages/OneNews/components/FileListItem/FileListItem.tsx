@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { INewsFiles } from '@/app/interface/News'
-import { createHrefToFile } from '@/app/lib/createHrefToFile'
-import { sliceExtensionInString } from '@/app/lib/sliceExtensionString'
+import { createHrefToFile } from '@/app/shared/lib/createHrefToFile'
+import { sliceExtensionInString } from '@/app/shared/lib/sliceExtensionString'
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded'
 import { Button } from '@mui/material'
 import { type FC, useRef } from 'react'

@@ -1,4 +1,4 @@
-import { selectFileExtensionIcon } from '@/app/lib/selectFileExtensionIcon'
+import { selectFileExtensionIcon } from '@/app/shared/lib/selectFileExtensionIcon'
 import { type FC, useMemo } from 'react'
 
 import s from './FileIcon.module.scss'

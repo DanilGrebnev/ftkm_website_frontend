@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { HeightCalcHelper } from 'src/app/lib/HeightHelper'
+import { HeightCalcHelper } from '@/app/shared/lib/HeightHelper'
 
 import s from './style.module.scss'
 

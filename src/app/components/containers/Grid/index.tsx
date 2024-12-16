@@ -1,5 +1,5 @@
 import React from 'react'
-import { setPropsStyle } from 'src/app/lib/SetPropsStyleHelper'
+import { setPropsStyle } from '@/app/shared/lib/SetPropsStyleHelper'
 
 import { IGridProps } from '../../../interface/Grid'
 import styleSCSS from './style.module.scss'

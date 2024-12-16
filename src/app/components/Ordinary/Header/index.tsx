@@ -1,4 +1,4 @@
-import { HeightCalcHelper } from '@lib/HeightHelper'
+import { HeightCalcHelper } from '@/app/shared/lib/HeightHelper'
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import { useEffect, useRef, useState } from 'react'

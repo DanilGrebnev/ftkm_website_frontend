@@ -1,6 +1,6 @@
 import { TextareaView } from '@/app/UI/ArticleBodyPreview/ArticleBodyPreview'
 import { type INewsItem } from '@/app/interface/News'
-import { selectFileExtensionIcon } from '@/app/lib/selectFileExtensionIcon'
+import { selectFileExtensionIcon } from '@/app/shared/lib/selectFileExtensionIcon'
 import clsx from 'clsx'
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'

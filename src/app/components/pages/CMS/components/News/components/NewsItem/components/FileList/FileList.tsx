@@ -1,5 +1,5 @@
 import { INewsFiles } from '@/app/interface/News'
-import { selectFileExtensionIcon } from '@/app/lib/selectFileExtensionIcon'
+import { selectFileExtensionIcon } from '@/app/shared/lib/selectFileExtensionIcon'
 import clsx from 'clsx'
 import { type FC } from 'react'
 
